@@ -1,0 +1,164 @@
+/* Feedback Page Styles */
+.feedback-page {
+    display: flex;
+    background-color: #f0f0f0; /* Light gray background */
+    color: #333; /* Dark text color */
+    font-family: 'Poppins', sans-serif;
+    width: 100vw;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    padding-top: 20px;
+  height: 100vh;
+    background-color: #fff; /* White background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd; /* Gray border */
+}
+
+.sidebar-header .logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.sidebar-menu {
+    padding: 20px;
+}
+
+.menu-item {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item i {
+    margin-right: 10px;
+}
+
+.logout-btn {
+    margin-top: auto; /* Push logout button to the bottom */
+    width: 14.1%;
+    padding: 10px;
+    background-color: #9F4446; /* Red theme color */
+    color: #fff; /* White text color */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 0;
+}
+
+.logout-btn:hover {
+    background-color: #7b2a2d; /* Darker red on hover */
+}
+
+.feedback-content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Booking Content Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  margin-top: 10;
+  padding: 0;
+}
+
+header {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.middle-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.fitness-goals ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.split-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.split-row > div {
+  flex: 1;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weekday {
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+.view-booking table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.view-equipment,
+.view-booking,
+.view-equipment,
+.ashesifit-tips {
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.view-booking,
+.view-equipment,
+.ashesifit-tips {
+  text-align: center;
+}
+
+.view-booking h2,
+.view-equipment h2,
+.ashesifit-tips h2 {
+  margin-top: 0;
+}
+
+.view-booking table td {
+  border: 1px solid #773c3c;
+}
+
+.fitness-team ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer {
+  background-color: #864747;
+  padding: 20px;
+  text-align: center;
+}
