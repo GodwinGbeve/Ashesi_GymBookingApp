@@ -7,7 +7,7 @@ if (isset($_GET['id'])) {
     // Sanitize input
     echo $_GET['id'];
     $feedbackID = mysqli_real_escape_string($con, $_GET['id']);
-
+ 
     // Delete feedback record
     $sql = "DELETE FROM Feedback WHERE feedbackID = '$feedbackID'";
     if (mysqli_query($con, $sql)) {
