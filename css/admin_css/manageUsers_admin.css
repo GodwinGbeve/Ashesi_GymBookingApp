@@ -1,0 +1,176 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #9F4446; /* Theme color */
+    color: white;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.sidebar-menu {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item.active a {
+    border-bottom: none;
+}
+
+.menu-item.active {
+    border-bottom: none;
+}
+
+.logout-link {
+    text-decoration: none;
+}
+
+.logout-btn {
+    background-color: #9F4446; /* Theme color */
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px; /* Adjust for sidebar width */
+    padding: 20px;
+}
+
+/* Table Styles */
+#userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#userTable th{
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  color:white;
+}
+
+#userTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+ /* color:; */
+}
+
+#userTable th {
+    background-color:  #9F4446;
+}
+
+/* Search Input Styles */
+#searchInput {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button Styles */
+button {
+    background-color: #9F4446;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #7b2a2d;
+}
+
+/* Edit form styling */
+/* CSS for the edit modal */
+.modal {
+    display: none; /* Hide the modal by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 50%; /* Adjust the width as needed */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

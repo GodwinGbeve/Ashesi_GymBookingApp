@@ -1,40 +1,75 @@
-document.addEventListener('DOMContentLoaded', getBookings);
+$(document).ready(function() {
+  // AJAX request to handle delete action
+  $(".delete-btn").click(function() {
+      var bookingID = $(this).data("booking-id");
 
-function getBookings() {
-  // Simulating API call to fetch bookings data
-  const bookingsData = [
-    { userID: 1, userName: 'John', instructorID: 1, instructorName: 'Michael', date: '2024-04-10', status: 'confirmed' },
-    { userID: 2, userName: 'Alice', instructorID: 2, instructorName: 'Jessica', date: '2024-04-12', status: 'pending' },
-    { userID: 3, userName: 'Bob', instructorID: 1, instructorName: 'Michael', date: '2024-04-15', status: 'confirmed' },
-    // Add more booking data as needed
-  ];
-
-  const bookingsBody = document.getElementById('bookings-body');
-
-  // Clear existing data
-  bookingsBody.innerHTML = '';
-
-  // Insert new booking data
-  bookingsData.forEach(booking => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${booking.userID}</td>
-      <td>${booking.userName}</td>
-      <td>${booking.instructorID}</td>
-      <td>${booking.instructorName}</td>
-      <td>${booking.date}</td>
-      <td>${booking.status}</td>
-      <td>
-        <div class="button-container">
-          <button onclick="handleBooking(${booking.userID})">Handle</button>
-        </div>
-      </td>
-    `;
-    bookingsBody.appendChild(row);
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'You will not be able to recover this booking!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // User confirmed, proceed with AJAX request
+              $.ajax({
+                  type: "POST",
+                  url: "../action/admin/booking_admin_actions.php",
+                  data: {
+                      action: "delete",
+                      bookingID: bookingID
+                  },
+                  success: function(response) {
+                      // Display SweetAlert for success or error message
+                      Swal.fire({
+                          icon: 'success',
+                          title: 'Success',
+                          text: response
+                      });
+                      // You can update the UI as needed here
+                      // Reload the page or update the table if necessary
+                  }
+              });
+          }
+      });
   });
-}
 
-function handleBooking(userID) {
-  // Simulating handling the booking for the selected user
-  alert(`Handling booking for User ID: ${userID}`);
-}
+  // AJAX request to handle cancel action
+  $(".cancel-btn").click(function() {
+      var bookingID = $(this).data("booking-id");
+
+      Swal.fire({
+          title: 'Are you sure?',
+          text: 'You want to cancel this booking?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, cancel it!'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              // User confirmed, proceed with AJAX request
+              $.ajax({
+                  type: "POST",
+                  url: "../action/admin/booking_admin_actions.php",
+                  data: {
+                      action: "cancel",
+                      bookingID: bookingID
+                  },
+                  success: function(response) {
+                      // Display SweetAlert for success or error message
+                      Swal.fire({
+                          icon: 'success',
+                          title: 'Success',
+                          text: response
+                      });
+                      // You can update the UI as needed here
+                      // Reload the page or update the table if necessary
+                  }
+              });
+          }
+      });
+  });
+});

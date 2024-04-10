@@ -39,73 +39,18 @@
             <button class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
         </div>
         <div class="equipment-grid">
-            <div class="equipment-item">
-                <img src="equipment1.jpg" alt="Equipment 1">
-                <h3>Treadmill</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment2.jpg" alt="Equipment 2">
-                <h3>Stationary Bike</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment3.jpg" alt="Equipment 3">
-                <h3>Elliptical</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment4.jpg" alt="Equipment 4">
-                <h3>Rowing Machine</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment5.jpg" alt="Equipment 5">
-                <h3>StairMaster</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment6.jpg" alt="Equipment 6">
-                <h3>Free Weights</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment7.jpg" alt="Equipment 7">
-                <h3>Weight Machines</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment8.jpg" alt="Equipment 8">
-                <h3>Exercise Balls</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment9.jpg" alt="Equipment 9">
-                <h3>Yoga Mats</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment10.jpg" alt="Equipment 10">
-                <h3>Resistance Bands</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment11.jpg" alt="Equipment 11">
-                <h3>Kettlebells</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment12.jpg" alt="Equipment 12">
-                <h3>Medicine Balls</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment13.jpg" alt="Equipment 13">
-                <h3>Bosu Balls</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment14.jpg" alt="Equipment 14">
-                <h3>Plyo Boxes</h3>
-            </div>
-            <div class="equipment-item">
-                <img src="equipment15.jpg" alt="Equipment 15">
-                <h3>Battle Ropes</h3>
-            </div>
+            
+        <?php 
+        include '../functions/equipment_fetch.php';
+        ?>
+
             <!-- <div class="equipment-item">
         <img src="equipment16.jpg" alt="Equipment 16">
         <h3>TRX Suspension Trainers</h3>
     </div> -->
         </div>
 
-        <script src="../js/notification.js"></script>
+        <script src="../js/equipment.js"></script>
 </body>
 
 </html>

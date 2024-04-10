@@ -1,0 +1,344 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #9F4446; /* Theme color */
+    color: white;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.sidebar-menu {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item.active a {
+    border-bottom: none;
+}
+
+.menu-item.active {
+    border-bottom: none;
+}
+
+.logout-link {
+    text-decoration: none;
+}
+
+.logout-btn {
+    background-color: #9F4446; /* Theme color */
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px; /* Adjust for sidebar width */
+    padding: 20px;
+}
+
+
+/* Manage Equipment Content Styles */
+.manage-equipment-content {
+    padding: 20px;
+    margin-left: 250px; 
+    
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    color: #9F4446;
+}
+
+.back-btn {
+    background-color: transparent;
+    border: none;
+    color: #9F4446;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: rgba(159, 68, 70, 0.1);
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+}
+
+.equipment-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.equipment-image {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.equipment-info {
+    margin-top: 10px;
+}
+
+.equipment-name {
+    font-weight: 600;
+    color: #9F4446;
+}
+
+.quantity-available {
+    color: #555;
+}
+
+.edit-delete-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+    background-color: #9F4446;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: #872C2E;
+}
+
+.add-equipment-btn {
+    margin-top: 20px;
+    /* text-align: center; */
+    margin-left: 0px;
+    padding: 10px;
+}
+
+.add-btn {
+    background-color: #9F4446;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #872C2E;
+}
+
+/* Add Equipment Form Styles */
+.add-equipment-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.add-equipment-form {
+    background-color: white;
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #9F4446;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.add-equipment-form .add-btn {
+    width: auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #9F4446;
+}
+
+
+/* Popup Styles */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.popup p {
+    color: #9F4446;
+    margin-bottom: 20px;
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cancel-btn,
+.delete-confirm-btn {
+    background-color: #9F4446;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn:hover,
+.delete-confirm-btn:hover {
+    background-color: #872C2E;
+}
+
+.edit-form-container {
+    display: none; /* Initially hide the container */
+    position: fixed; /* Position the container relative to the viewport */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the container */
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 999; /* Ensure the container appears above other content */
+}
+
+/* Close button */
+.edit-form-container .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Form styling */
+/* .edit-form-container form { */
+    /* Add your form styling here */
+/* } */
+
+/* Overlay to dim the background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 998; /* Ensure the overlay appears below the edit form container */
+}
+
+

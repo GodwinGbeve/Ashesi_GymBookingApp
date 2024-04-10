@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #9F4446; /* Theme color */
+    color: white;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.sidebar-menu {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item.active a {
+    border-bottom: none;
+}
+
+.menu-item.active {
+    border-bottom: none;
+}
+
+.logout-link {
+    text-decoration: none;
+}
+
+.logout-btn {
+    background-color: #9F4446; /* Theme color */
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px; /* Adjust for sidebar width */
+    padding: 20px;
+}
+
+/* Dashboard Overview Styles */
+.summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.metric {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 20px;
+    flex-basis: 23%; /* Adjust width to fit four per row */
+    margin-bottom: 20px; /* Add margin for spacing */
+}
+
+.metric .icon {
+    font-size: 24px;
+    margin-right: 20px;
+}
+
+.metric .value {
+    font-size: 36px;
+}
+
+.metric .label {
+    font-size: 16px;
+}
+
+.upcoming-events ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.upcoming-events li {
+    margin-bottom: 10px;
+}

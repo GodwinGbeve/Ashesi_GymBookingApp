@@ -54,6 +54,20 @@ include '../settings/core.php';
                             <input type="date" id="date" name="date" required>
                             <label for="time">Select Time:</label>
                             <input type="time" id="time" name="time" required>
+                            <label for="instructor">Select Gym Instructor:</label>
+                            <select id="instructor" name="instructor" required>
+                                <option value="">Select an instructor</option>
+                                <!-- PHP code to fetch gym instructors from the database and populate the dropdown -->
+                                <?php
+                                $query = "SELECT * FROM GymInstructors";
+                                $result = mysqli_query($con, $query);
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row['instructorID'] . "'>" . $row['instructorName'] . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
                             <button type="submit" class="book-now-btn">Book Now</button>
                         </form>
                     </div>
@@ -64,18 +78,15 @@ include '../settings/core.php';
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
+                        <th>Instructor</th> <!-- Changed to singular form -->
                         <th>Edit</th>
                         <th>Delete</th>
-
                     </tr>
                 </thead>
                 <tbody>
-
-
-                    <!-- PHP code to fetch bookings -->
                     <?php
-                    // Fetch bookings from the database
-                    $query = "SELECT * FROM Bookings";
+                    // Fetch bookings along with the corresponding instructor information
+                    $query = "SELECT b.*, i.instructorName FROM Bookings b JOIN GymInstructors i ON b.instructorID = i.instructorID";
                     $result = mysqli_query($con, $query);
 
                     // Check if there are any bookings
@@ -85,78 +96,93 @@ include '../settings/core.php';
                             echo "<tr>";
                             echo "<td class='date-column'>" . $row['date'] . "</td>";
                             echo "<td class='time-column'>" . $row['time_slot'] . "</td>";
+                            echo "<td class='instructor-column'>" . $row['instructorName'] . "</td>"; // Display instructor name
                             echo "<td><a href='#' class='edit-icon' data-id='" . $row['bookingID'] . "'><i class='fas fa-edit'></i></a></td>";
                             echo "<td><a href='#' class='delete-icon' onclick='confirmDelete(" . $row['bookingID'] . ")'><i class='fas fa-trash-alt'></i></a></td>";
                             echo "</tr>";
                         }
                     } else {
                         // If no bookings are found, display a message
-                        echo "<tr><td colspan='4'>No bookings found</td></tr>";
+                        echo "<tr><td colspan='5'>No bookings found</td></tr>";
                     }
+                    
                     ?>
-
                 </tbody>
             </table>
-        </div>
-    </div>
 
-    <div id="editPopup" class="edit-popup">
-        <div class="edit-popup-content">
-            <span class="close-edit-popup">&times;</span>
-            <h2>Edit Booking</h2>
-            <form id="editBookingForm" action="../action/editBook_action.php" method="post">
-                <input type="hidden" id="editBookingID" name="booking_id">
-                <label for="editDate">Select Date:</label>
-                <input type="date" id="editDate" name="date" required>
-                <label for="editTime">Select Time:</label>
-                <input type="time" id="editTime" name="time" required>
-                <button type="submit" class="book-now-btn">Update</button>
-            </form>
-        </div>
-    </div>
 
-    <script src="../js/booking.js"></script>
-    <!-- Include SweetAlert library -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <div id="editPopup" class="edit-popup">
+                <div class="edit-popup-content">
+                    <span class="close-edit-popup">&times;</span>
+                    <h2>Edit Booking</h2>
+                    <form id="editBookingForm" action="../action/editBook_action.php" method="post">
+                        <input type="hidden" id="editBookingID" name="booking_id">
+                        <label for="editDate">Select Date:</label>
+                        <input type="date" id="editDate" name="date" required>
+                        <label for="editTime">Select Time:</label>
+                        <input type="time" id="editTime" name="time" required>
+                        <label for="editInstructor">Select Gym Instructor:</label>
+                        <select id="editInstructor" name="instructor" required>
+                            <option value="">Select an instructor</option>
+                            <!-- PHP code to fetch gym instructors from the database and populate the dropdown -->
+                            <?php
+                            $query = "SELECT * FROM GymInstructors";
+                            $result = mysqli_query($con, $query);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row['instructorID'] . "'>" . $row['instructorName'] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
 
-    <!-- JavaScript function for delete confirmation -->
-    <script>
-        function confirmDelete(bookingID) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this booking!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // If user confirms, redirect to delete action page with bookingID
-                    window.location.href = '../action/deleteBook_action.php?id=' + bookingID;
+                        <button type="submit" class="book-now-btn">Update</button>
+                    </form>
+                </div>
+            </div>
+
+            <script src="../js/booking.js"></script>
+            <!-- Include SweetAlert library -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <!-- JavaScript function for delete confirmation -->
+            <script>
+                function confirmDelete(bookingID) {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'You will not be able to recover this booking!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // If user confirms, redirect to delete action page with bookingID
+                            window.location.href = '../action/deleteBook_action.php?id=' + bookingID;
+                        }
+                    });
                 }
-            });
-        }
-    </script>
+            </script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script> $(document).ready(function () { // Booking confirmation
-            $("#bookingForm").submit(function (event) {
-                event.preventDefault();
-                Swal.fire({
-                    title: 'Success!', text: 'Your booking has been confirmed.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
-            }); // Editing confirmation 
-            $("#editBookingForm").submit(function (event) {
-                event.preventDefault(); Swal.fire({
-                    title: 'Success!', text: 'Your booking has been updated.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
-            });
-        }); </script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script> $(document).ready(function () { // Booking confirmation
+                    $("#bookingForm").submit(function (event) {
+                        event.preventDefault();
+                        Swal.fire({
+                            title: 'Success!', text: 'Your booking has been confirmed.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
+                    }); // Editing confirmation 
+                    $("#editBookingForm").submit(function (event) {
+                        event.preventDefault(); Swal.fire({
+                            title: 'Success!', text: 'Your booking has been updated.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
+                    });
+                }); </script>
 </body>
 
 </html>

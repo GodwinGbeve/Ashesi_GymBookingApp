@@ -2,7 +2,7 @@
 
 $SERVER = "localhost";
 $USERNAME = "root";
-$PASSWD = "LnW0He!G!0/4";
+$PASSWD = "";
 $DATABASE = "gym_book";
 
 $con = new mysqli($SERVER, $USERNAME, $PASSWD, $DATABASE) or die("could not connect database");

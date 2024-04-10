@@ -1,310 +1,147 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  #bookings-container {
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #9F4446; /* Theme color */
+    color: white;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.sidebar-menu {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item.active a {
+    border-bottom: none;
+}
+
+.menu-item.active {
+    border-bottom: none;
+}
+
+.logout-link {
+    text-decoration: none;
+}
+
+.logout-btn {
+    background-color: #9F4446; /* Theme color */
+    border: none;
+    color: white;
+    cursor: pointer;
     margin-top: 20px;
-  }
-  
-  #bookings-table {
+    padding: 10px 20px;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px; /* Adjust for sidebar width */
+    padding: 20px;
+}
+
+/* Dashboard Overview Styles */
+/* CSS for View Bookings */
+.container {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#bookings-table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  #bookings-table th, #bookings-table td {
+    color:#fff;
+}
+
+#bookings-table th,
+#bookings-table td {
+    border: 1px solid  #fff;
     padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  #bookings-table th {
+    text-align: center;
+}
+
+#bookings-table th {
+    background-color: #9F4446;
+}
+#bookings-table td {
+    color: #9F4446;
+}
+
+#bookings-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
-  }
-  
-  #bookings-table td:nth-child(1), #bookings-table td:nth-child(3), #bookings-table td:nth-child(5) {
+    color:#9F4446;
+}
+
+#bookings-table tbody tr:hover {
+    background-color: #ddd;
+    color:#9F4446;
+}
+
+#bookings-table td.action {
     text-align: center;
-  }
-  
-  #bookings-table td:nth-child(7) {
-    text-align: center;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .button-container button {
-    margin: 5px;
-  }
-  
-  
-  /* Feedback Page Styles */
-  .feedback-page {
-      display: flex;
-      background-color: #f0f0f0; /* Light gray background */
-      color: #333; /* Dark text color */
-      font-family: 'Poppins', sans-serif;
-      width: 100vw;
-      height: 100vh;
-  }
-  
-  .sidebar {
-      width: 250px;
-      padding-top: 20px;
-      background-color: #fff; /* White background */
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  }
-  
-  .sidebar-header {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd; /* Gray border */
-  }
-  
-  .sidebar-header .logo {
-      font-size: 20px;
-      font-weight: bold;
-      margin-left: 10px;
-  }
-  
-  .sidebar-menu {
-      padding: 20px;
-  }
-  
-  .menu-item {
-      padding: 10px 0;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  
-  .menu-item i {
-      margin-right: 10px;
-  }
-  
-  .logout-btn {
-      margin-top: auto; /* Push logout button to the bottom */
-      width: 17.5%;
-      padding: 10px;
-      background-color: #9F4446; /* Red theme color */
-      color: #fff; /* White text color */
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      position: fixed;
-      bottom: 0;
-  }
-  
-  .logout-btn:hover {
-      background-color: #7b2a2d; /* Darker red on hover */
-  }
-  
-  .feedback-content {
-      flex: 1;
-      padding: 20px;
-  }
-  
-  /* Booking Content Styles */
-  .content {
-      flex: 1;
-      padding: 20px;
-  }
-  
-  .booking-content {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .booking-content h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-  }
-  
-  .booking-form {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .booking-form label {
-      font-size: 16px;
-      margin-bottom: 10px;
-  }
-  
-  .booking-form input[type="date"],
-  .booking-form input[type="time"] {
-      padding: 8px;
-      margin-bottom: 20px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-  }
-  
-  .booking-form button {
-      padding: 10px 20px;
-      background-color: #9F4446;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  
-  .booking-form button:hover {
-      background-color: #7b2a2d;
-  }
-  
-  .booking-content {
-      /* ... existing styles ... */
-      position: relative; /* Added position relative */
-  }
-  
-  .toggle-table-btn {
-      position: absolute; /* Added absolute position */
-      top: 20px; /* Adjust the top position as needed */
-      right: 20px; /* Adjust the right position as needed */
-      padding: 10px 20px;
-      background-color: #9F4446;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  
-  .booking-table {
-      margin-top: 20px; /* Added margin-top to create space below the button */
-      width: 100%;
-      border-collapse: collapse;
-  }
-  
-  .booking-table th,
-  .booking-table td {
-      padding: 10px;
-      border: 1px solid #ddd;
-  }
-  
-  .booking-content {
-      /* ... existing styles ... */
-      position: relative; /* Added position relative */
-  }
-  
-  .toggle-form-btn {
-      padding: 10px 20px;
-      background-color: #9F4446;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  }
-  
-  .booking-form-wrapper {
-      display: none; /* Hide the form initially */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 30px;
-      background-color: #9F4446;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-     z-index: 1;
-  }
-  
-  .close-icon {
-      color: #fff;
-      font-size: 20px;
-  }
-  
-  .close-button:hover {
-      background-color: #7b2a2d;
-  }
-  
-  
-  
-  
-  
-  /* Edit popup styles */
-  .edit-popup {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  }
-  
-  .edit-popup-content {
-      background-color: #fff; /* White background */
-      margin: 10% auto; /* Center the popup vertically */
-      padding: 20px;
-      border: 1px solid #ccc; /* Light gray border */
-      border-radius: 5px;
-      width: 50%; /* Set width of the popup */
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  }
-  
-  .close-edit-popup {
-      color: #888; /* Light gray color */
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-  }
-  
-  .close-edit-popup:hover,
-  .close-edit-popup:focus {
-      color: #333; /* Darker gray color on hover */
-  }
-  
-  /* Style the form elements */
-  #editBookingForm label {
-      display: block;
-      margin-bottom: 10px;
-      color: #333;
-  }
-  
-  #editBookingForm input[type="date"],
-  #editBookingForm input[type="time"] {
-      width: calc(100% - 20px); /* Adjust width */
-      padding: 8px;
-      border: 1px solid #ccc; /* Light gray border */
-      border-radius: 4px;
-  }
-  
-  #editBookingForm button[type="submit"] {
-      background-color: #007bff; /* Blue button color */
-      color: #fff; /* White text color */
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-  }
-  
-  #editBookingForm button[type="submit"]:hover {
-      background-color: #0056b3; /* Darker blue on hover */
-  }
-  
+}
+
+.edit-icon,
+.delete-icon {
+    color: #007bff;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.edit-icon:hover,
+.delete-icon:hover {
+    color: #0056b3;
+}

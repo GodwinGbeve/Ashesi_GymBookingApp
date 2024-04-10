@@ -1,0 +1,156 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #9F4446; /* Theme color */
+    color: white;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.sidebar-menu {
+    padding: 0;
+    list-style-type: none;
+    margin: 20px 0;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item a:hover {
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+.menu-item.active a {
+    border-bottom: none;
+}
+
+.menu-item.active {
+    border-bottom: none;
+}
+
+.logout-link {
+    text-decoration: none;
+}
+
+.logout-btn {
+    background-color: #9F4446; /* Theme color */
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Content Styles */
+.content {
+    margin-left: 250px; /* Adjust for sidebar width */
+    padding: 20px;
+}
+
+.feedback-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Feedback Cards */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.feedback-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.feedback-display {
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd; /* Border color */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #9F4446; /* Theme color */
+    color: white; /* Text color */
+}
+
+.download-btn {
+    background-color: #9F4446; /* Theme color */
+    border: none;
+    color: white; /* Text color */
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    float: right;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #8B0000;
+}
+
+
+/* Download Button */
+#download-feedback-btn {
+    background-color: #9F4446; /* Theme color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    float: right; /* Align to the right side */
+}

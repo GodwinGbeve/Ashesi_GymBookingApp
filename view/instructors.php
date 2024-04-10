@@ -42,56 +42,37 @@
                 <button class="back-btn"><a href="dashboard.php"><i class="fas fa-arrow-left"></i> Back</a></button>
             </div>
             <div class="instructor-grid">
-                <div class="instructor-item">
-                    <img src="instructor1.jpg" alt="Instructor 1" class="instructor-image">
-                    <h3 class="instructor-name">John Doe</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor2.jpg" alt="Instructor 2" class="instructor-image">
-                    <h3 class="instructor-name">Jane Smith</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor1.jpg" alt="Instructor 1" class="instructor-image">
-                    <h3 class="instructor-name">John Doe</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor2.jpg" alt="Instructor 2" class="instructor-image">
-                    <h3 class="instructor-name">Jane Smith</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor1.jpg" alt="Instructor 1" class="instructor-image">
-                    <h3 class="instructor-name">John Doe</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor2.jpg" alt="Instructor 2" class="instructor-image">
-                    <h3 class="instructor-name">Jane Smith</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor1.jpg" alt="Instructor 1" class="instructor-image">
-                    <h3 class="instructor-name">John Doe</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor2.jpg" alt="Instructor 2" class="instructor-image">
-                    <h3 class="instructor-name">Jane Smith</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor1.jpg" alt="Instructor 1" class="instructor-image">
-                    <h3 class="instructor-name">John Doe</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor2.jpg" alt="Instructor 2" class="instructor-image">
-                    <h3 class="instructor-name">Jane Smith</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor1.jpg" alt="Instructor 1" class="instructor-image">
-                    <h3 class="instructor-name">John Doe</h3>
-                </div>
-                <div class="instructor-item">
-                    <img src="instructor2.jpg" alt="Instructor 2" class="instructor-image">
-                    <h3 class="instructor-name">Jane Smith</h3>
-                </div>
+            <?php include '../functions/instructors_fetch.php'; ?>
 
                 <!-- Add more instructor items as needed -->
             </div>
         </div>
+
     </div>
+
+
+    <script>
+    // JavaScript function to open booking form modal
+    function openBookingForm(instructorID) {
+        var modal = document.getElementById('bookingForm' + instructorID);
+        modal.style.display = 'block';
+    }
+
+    // JavaScript function to close booking form modal
+    function closeBookingForm(instructorID) {
+        var modal = document.getElementById('bookingForm' + instructorID);
+        modal.style.display = 'none';
+    }
+
+    // Attach event listener to the book buttons
+    var bookButtons = document.querySelectorAll('.book-btn');
+    bookButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var instructorID = this.getAttribute('data-instructor-id');
+            openBookingForm(instructorID);
+        });
+    });
+    </script>
+</div>
+</body>
+</html>

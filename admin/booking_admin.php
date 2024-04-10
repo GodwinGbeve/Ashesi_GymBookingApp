@@ -1,53 +1,44 @@
-
-
-
-
-
-<?php
-// Include the core.php file
-include '../settings/connection.php';
-include '../settings/core.php';
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashesifit Booking</title>
-    <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/admin_css/adminbookingPage.css" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/admin_css/adminbookingPage.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="feedback-page">
+    <div class="admin-reports-page">
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="feedback-icon"><i class="fas fa-calendar-alt"></i></div>
-                <div class="logo">Ashesifit</div>
+                <div class="reports-icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="logo">AshesiFit</div>
             </div>
             <div class="sidebar-menu">
-                <div class="menu-item active"><a href="profile.php"><i class="fas fa-user"></i> Profile</a></div>
-                <div class="menu-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
-                <div class="menu-item"><a href="booking.php"><i class="fas fa-calendar-alt"></i> Bookings</a></div>
-                <div class="menu-item"><a href="notification.php"><i class="fas fa-bell"></i> Notification</a></div>
-                <div class="menu-item"><a href="feedback.php"><i class="fas fa-comment"></i> Feedback</a></div>
-                <div class="menu-item"><a href="instructors.php"><i
-                            class="fas fa-chalkboard-teacher"></i>Instructors</a></div>
-                <div class="menu-item"><a href="equipment.php"><i class="fas fa-dumbbell"></i>Equipment</a></div>
+            <div class="menu-item"><a href="../admin/profile_admin.php"><i class="fas fa-user"></i> Profile</a></div>
+                <div class="menu-item"><a href="../admin/dashboard_admin.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+                <div class="menu-item"><a href="../admin/booking_admin.php"><i class="fas fa-calendar-alt"></i> Bookings</a></div>
+                <div class="menu-item"><a href="../admin/notification_admin.php"><i class="fas fa-bell"></i> Notification</a></div>
+                <div class="menu-item"><a href="../admin/feedback_admin.php"><i class="fas fa-comment"></i> Feedback</a></div>
+                <div class="menu-item"><a href="../admin/instructors_admin.php"><i class="fas fa-chalkboard-teacher"></i> Instructors</a></div>
+                <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i> Equipment</a></div>
+                <div class="menu-item active"><a href="../admin/reports_admin.php"><i class="fas fa-chart-bar"></i> Generate Reports</a></div>
+                <div class="menu-item active"><a href="../admin/schedule_instructor.php"> <i class="far fa-clock"></i> View Schedule</a></div>
+                <div class="menu-item"><a href="../admin/manageUsers_admin.php"><i class="fas fa-users"></i> Manage Users</a></div>
             </div>
-            <a href="../login/login.php">
+            <a href="../login/login.php" class="logout-link">
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </a>
         </div>
-        <body>
-  <h1>Admin Booking Page</h1>
-  
-  <div id="bookings-container">
+        <div class="content">
+             <body>
+    <div class="container">
+        <h1>View Bookings</h1>
+        <div class="bookings">
+            <!-- Booking cards will be dynamically populated here -->
+             <div id="bookings-container">
     <table id="bookings-table">
       <thead>
         <tr>
@@ -56,88 +47,116 @@ include '../settings/core.php';
           <th>Instructor ID</th>
           <th>Instructor Name</th>
           <th>Date</th>
+          <th>time</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody id="bookings-body">
         <!-- Booking data will be dynamically inserted here -->
+        <?php include '../functions/booking_admin_fxn.php'; ?>
       </tbody>
     </table>
   </div>
 
-
-                    <!-- PHP code to fetch bookings -->
-<!--                     <?php
-                    // Fetch bookings from the database
-                    $query = "SELECT * FROM Bookings";
-                    $result = mysqli_query($con, $query);
-
-                    // Check if there are any bookings
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through each row and display the booking information
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td class='date-column'>" . $row['date'] . "</td>";
-                            echo "<td class='time-column'>" . $row['time_slot'] . "</td>";
-                            echo "<td><a href='#' class='edit-icon' data-id='" . $row['bookingID'] . "'><i class='fas fa-edit'></i></a></td>";
-                            echo "<td><a href='#' class='delete-icon' onclick='confirmDelete(" . $row['bookingID'] . ")'><i class='fas fa-trash-alt'></i></a></td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        // If no bookings are found, display a message
-                        echo "<tr><td colspan='4'>No bookings found</td></tr>";
-                    }
-                    ?>
- -->
-                </tbody>
-            </table>
-        </div>
     </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   
-    <script src="../js/admin_js/booking_admin.js"></script>
-    <!-- Include SweetAlert library -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Select all delete buttons
+    const deleteButtons = document.querySelectorAll('.delete-btn');
 
-    <!-- JavaScript function for delete confirmation -->
-    <script>
-        function confirmDelete(bookingID) {
+    // Add event listener to each delete button
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Retrieve booking ID from data attribute
+            const bookingID = this.getAttribute('data-booking-id');
+
+            // Confirm deletion with user
             Swal.fire({
                 title: 'Are you sure?',
-                text: 'You will not be able to recover this booking!',
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // If user confirms, redirect to delete action page with bookingID
-                    window.location.href = '../action/deleteBook_action.php?id=' + bookingID;
+                    // Send AJAX request to delete booking
+                    fetch('../action/booking_admin_action.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'action=delete&bookingID=' + bookingID
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        // Display result to user
+                        Swal.fire(
+                            'Deleted!',
+                            data,
+                            'success'
+                        );
+                        // Optionally, you can reload the page or update the booking list
+                        location.reload();
+                    })
+                    .catch(error => console.error('Error:', error));
                 }
             });
-        }
-    </script>
+        });
+    });
+</script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script> $(document).ready(function () { // Booking confirmation
-            $("#bookingForm").submit(function (event) {
-                event.preventDefault();
-                Swal.fire({
-                    title: 'Success!', text: 'Your booking has been confirmed.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
-            }); // Editing confirmation 
-            $("#editBookingForm").submit(function (event) {
-                event.preventDefault(); Swal.fire({
-                    title: 'Success!', text: 'Your booking has been updated.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
+<script>
+    // Select all cancel buttons
+    const cancelButtons = document.querySelectorAll('.cancel-btn');
+
+    // Add event listener to each cancel button
+    cancelButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Retrieve booking ID from data attribute
+            const bookingID = this.getAttribute('data-booking-id');
+
+            // Confirm cancellation with user
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want to cancel this booking?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Send AJAX request to cancel booking
+                    fetch('../action/booking_admin_action.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'action=cancel&bookingID=' + bookingID
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        // Display result to user
+                        Swal.fire(
+                            'Cancelled!',
+                            data,
+                            'success'
+                        );
+                        // Optionally, you can reload the page or update the booking list
+                        location.reload();
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
             });
-        }); </script>
-</body>
+        });
+    });
+</script>
+
 
 </html>

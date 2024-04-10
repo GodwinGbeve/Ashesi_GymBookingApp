@@ -1,5 +1,3 @@
-
-
 <?php
 // Include the connection file
 include '../settings/connection.php';
@@ -20,10 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userID = $_SESSION['user_id'];
     $date = $_POST['date'];
     $time = $_POST['time'];
+    $instructorID = $_POST['instructor']; // Get selected instructor ID
     $status = 'pending'; // Default status for new bookings
 
     // Insert the booking into the database
-    $insertQuery = "INSERT INTO Bookings (userID, date, time_slot, status) VALUES ('$userID', '$date', '$time', '$status')";
+    $insertQuery = "INSERT INTO Bookings (userID, instructorID, date, time_slot, status) VALUES ('$userID', '$instructorID', '$date', '$time', '$status')";
     $insertResult = mysqli_query($con, $insertQuery);
 
     if ($insertResult) {
@@ -44,4 +43,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Close the database connection
 mysqli_close($con);
 ?>
-
