@@ -23,6 +23,7 @@ include ('../functions/username_fxn.php');
 </head>
 
 <body>
+    
     <div class="admin-reports-page">
         <div class="sidebar">
             <div class="sidebar-header">
