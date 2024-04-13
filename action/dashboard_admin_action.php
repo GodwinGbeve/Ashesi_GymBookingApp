@@ -26,11 +26,6 @@ $resultTotalFeedbacks = mysqli_query($con, $sqlTotalFeedbacks);
 $rowTotalFeedbacks = mysqli_fetch_assoc($resultTotalFeedbacks);
 $totalFeedbacks = $rowTotalFeedbacks['totalFeedbacks'];
 
-// Query to get total notifications and announcements
-$sqlTotalNotifications = "SELECT COUNT(*) AS totalNotifications FROM Notification";
-$resultTotalNotifications = mysqli_query($con, $sqlTotalNotifications);
-$rowTotalNotifications = mysqli_fetch_assoc($resultTotalNotifications);
-$totalNotifications = $rowTotalNotifications['totalNotifications'];
 
 // Query to get total gym instructors
 $sqlTotalInstructors = "SELECT COUNT(*) AS totalInstructors FROM GymInstructors";
@@ -41,7 +36,7 @@ $totalInstructors = $rowTotalInstructors['totalInstructors'];
 // Calculate statistics percentage based on total members and total bookings
 $totalMetrics = 6; // Total number of metrics
 
-$statisticsPercentage = round((($totalBookings + $totalMembers + $equipmentAvailability + $totalFeedbacks + $totalInstructors + $totalNotifications)/6) * 100);
+$statisticsPercentage = round((($totalBookings + $totalMembers + $equipmentAvailability + $totalFeedbacks + $totalInstructors )/5) * 100);
 
 
 // Render the information on the dashboard

@@ -29,11 +29,10 @@ include '../action/notification_actions.php';
                 <div class="logo">Ashesifit</div>
             </div>
             <div class="sidebar-menu">
-                <div class="menu-item active"><a href="profile.php"><i class="fas fa-user"> </i> Profile</a></div>
+            <div class="menu-item"><a href="profile.php"><i class="fas fa-user"> </i> Profile</a></div>
                 <div class="menu-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>Dashboard</a></div>
                 <div class="menu-item"><a href="booking.php"><i class="fas fa-calendar-alt"></i>Bookings</a></div>
-                <div class="menu-item"><a href="notification.php"><i class="fas fa-bell"></i>Notification</a></div>
-                <div class="menu-item active"><a href="feedback.php"><i class="fas fa-comment"></i>Feedback</a></div>
+                <div class="menu-item"><a href="feedback.php"><i class="fas fa-comment"></i>Feedback</a></div>
                 <div class="menu-item"><a href="instructors.php"><i class="fas fa-chalkboard-teacher"></i>Instructors</a></div>
                 <div class="menu-item"><a href="equipment.php"><i class="fas fa-dumbbell"></i>Equipment</a></div>
             </div>

@@ -154,3 +154,8 @@ th {
     margin-bottom: 20px;
     float: right; /* Align to the right side */
 }
+.delete-btn,
+.resolve-btn ,
+.download-btn {
+    text-decoration: none; /* Remove underline */
+}

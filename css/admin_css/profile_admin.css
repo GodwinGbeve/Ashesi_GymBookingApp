@@ -5,6 +5,9 @@ body {
     padding: 0;
     width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Sidebar Styles */
@@ -83,14 +86,8 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Content Styles */
-.content {
-    margin-left: 250px; /* Adjust for sidebar width */
-    padding: 20px;
-}
-
-/* Dashboard Overview Styles */
-/* Profile Content Styles */
+/* Profile content styles */
+/* Profile content styles */
 .profile-content {
     max-width: 600px;
     margin: 0 auto;
@@ -98,49 +95,52 @@ body {
 
 .container {
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    background-color: #fff;
 }
 
-.profile-content h4 {
-    margin-bottom: 20px;
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the column */
 }
 
-.profile-content .labels {
+.col-md-12 {
+    width: 100%; /* Make each column full width */
+    margin-bottom: 20px; /* Add some space between each row */
+}
+
+.labels {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+  
 }
 
-.profile-content .form-control {
+.labels-n {
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.form-control {
+    border: 4px solid #9F4446;
     border-radius: 5px;
     padding: 10px;
-    border: 1px solid #ddd;
+    width: 90%;
 }
 
 .profile-button {
-    margin-top: 20px;
     padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    background-color: #9F4446;
+    color: white;
     cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .profile-button:hover {
-    background-color: #45a049;
-}
-
-.profile-content img {
-    object-fit: cover;
-    object-position: center;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .profile-content {
-        padding: 0 20px;
-    }
+    background-color: #8E333B;
 }

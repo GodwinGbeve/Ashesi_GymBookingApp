@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Check if execution worked
     if ($result) {
-        // Redirect to login page if execution is successful
-        header('Location: ../login/login.php');
+        // Redirect to login page with success parameter
+        header('Location: ../login/login.php?success=true');
         exit();
     } else {
         // Take appropriate action if execution fails (display error on signup page)

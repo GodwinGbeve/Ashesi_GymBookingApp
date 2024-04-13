@@ -1,6 +1,7 @@
 <?php
 // Include database connection
 include_once('../settings/connection.php');
+include_once('../settings/core.php');
 
 // Fetch equipment data from the database
 $sql = "SELECT * FROM Equipment";
@@ -18,14 +19,21 @@ if (mysqli_num_rows($result) > 0) {
         
         // Edit and Delete buttons
         echo '<div class="edit-delete-buttons">';
+        if (isset($_SESSION['role_id'])) {
+            $rid = $_SESSION['role_id'];
+        
+            // Display delete and cancel buttons only for admin
+            if ($rid == 3) { // If the user is an admin
         echo '<button class="edit-btn" onclick="editEquipment(' . $row['equipmentID'] . ')"><i class="fas fa-edit"></i> Edit</button>';
         echo '<a class="delete-btn" href="../action/deleteEquipment_action.php?id=' . $row['equipmentID'] . '" style="text-decoration: none;"><i class="fas fa-trash"></i> Delete</a>';
+            }
+        }
         echo '</div>';
         
         echo '</div>';
     }
 } else {
-    echo "0 results";
+    echo "No equipment";
 }
 
 // Close database connection

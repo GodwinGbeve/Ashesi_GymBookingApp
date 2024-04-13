@@ -24,8 +24,16 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['status'] . "</td>";
         // Add buttons for actions (delete and cancel)
         echo "<td>";
-        echo "<button class='delete-btn' data-booking-id='" . $row['bookingID'] . "' style='background-color: #9F4446; color: white; margin-right: 5px; padding: 8px 16px; border-radius: 5px; border: none; cursor: pointer;'>Delete</button>";
-        echo "<button class='cancel-btn' data-booking-id='" . $row['bookingID'] . "' style='background-color: #9F4446; color: white; margin-right: 5px; padding: 8px 16px; border-radius: 5px; border: none; cursor: pointer;'>Cancel</button>";
+        if (isset($_SESSION['role_id'])) {
+            $rid = $_SESSION['role_id'];
+        
+            // Display delete and cancel buttons only for admin
+            if ($rid == 3) { // If the user is an admin
+                echo "<button class='delete-btn' data-booking-id='" . $row['bookingID'] . "' style='background-color: #9F4446; color: white; margin-right: 5px; padding: 8px 16px; border-radius: 5px; border: none; cursor: pointer;'>Delete</button>";
+                echo "<button class='cancel-btn' data-booking-id='" . $row['bookingID'] . "' style='background-color: #9F4446; color: white; margin-right: 5px; padding: 8px 16px; border-radius: 5px; border: none; cursor: pointer;'>Cancel</button>";
+            }
+        }
+        
         echo "</td>";
         echo "</tr>";
     }

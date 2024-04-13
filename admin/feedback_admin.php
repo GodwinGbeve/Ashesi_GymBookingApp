@@ -1,3 +1,11 @@
+<?php
+// Include database connection
+include_once ('../settings/connection.php');
+include_once ('../settings/core.php');
+include ('../functions/username_fxn.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,37 +17,81 @@
     <link rel="stylesheet" href="../css/admin_css/feedback_admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <div class="admin-feedback-page">
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="feedback-icon"><i class="fas fa-calendar-alt"></i></div>
+                <span class="material-symbols-outlined">
+                    exercise</span>
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                    $userId = $_SESSION['user_id'];
+                    $userName = getUserName($userId, $con);
+                    echo '<div class="user-info">';
+
+                    echo '  <strong>' . $userName . '</strong>'; // Enclose user name in <strong> tag
+                    echo '</div>';
+                } else {
+                    echo "Error: User ID not set in session";
+                }
+                ?>
+                <div class="feedback-icon"><i></i></div>
                 <div class="logo">Ashesifit</div>
             </div>
             <div class="sidebar-menu">
-                <div class="menu-item"><a href="../admin/profile_admin.php"><i class="fas fa-user"></i> Profile</a></div>
-                <div class="menu-item"><a href="../admin/dashboard_admin.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
-                <div class="menu-item"><a href="../admin/booking_admin.php"><i class="fas fa-calendar-alt"></i> Bookings</a></div>
-                <div class="menu-item"><a href="../admin/notification_admin.php"><i class="fas fa-bell"></i> Notification</a></div>
-                <div class="menu-item active"><a href="../admin/feedback_admin.php"><i class="fas fa-comment"></i> Feedback</a></div>
-                <div class="menu-item"><a href="../admin/instructors_admin.php"><i class="fas fa-chalkboard-teacher"></i> Instructors</a></div>
-                <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i> Equipment</a></div>
-                <div class="menu-item"><a href="../admin/reports_admin.php"><i class="fas fa-chart-bar"></i> Generate Reports</a></div>
-                <div class="menu-item"><a href="../admin/schedule_instructor.php"> <i class="far fa-clock"></i> View Schedule</a></div>
-                <div class="menu-item"><a href="../admin/manageUsers_admin.php"><i class="fas fa-users"></i> Manage Users</a></div>
-                <a href="../login/login.php" class="logout-link">
-                    <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                <div class="menu-item"><a href="../admin/profile_admin.php"><i class="fas fa-user"></i> Profile</a>
+                </div>
+                <div class="menu-item"><a href="../admin/dashboard_admin.php"><i class="fas fa-tachometer-alt"></i>
+                        Dashboard</a></div>
+                <div class="menu-item"><a href="../admin/booking_admin.php"><i class="fas fa-calendar-alt"></i>
+                        Bookings</a></div>
+                <div class="menu-item active"><a href="../admin/feedback_admin.php"><i class="fas fa-comment"></i>
+                        Feedback</a></div>
+                <div class="menu-item"><a href="../admin/instructors_admin.php"><i
+                            class="fas fa-chalkboard-teacher"></i> Instructors</a></div>
+                <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i>
+                        Equipment</a></div>
+
+                <?php
+                if (isset($_SESSION['role_id'])) {
+                    $rid = $_SESSION['role_id'];
+                    if ($rid == 3) { // If the user is an admin
+                        ?>
+                        <div class="menu-item"><a href="../admin/reports_admin.php"><i class="fas fa-chart-bar"></i> Generate
+                                Reports</a></div>
+                        <div class="menu-item"><a href="../admin/manageUsers_admin.php"><i class="fas fa-users"></i> Manage
+                                Users</a></div>
+                        <?php
+                    }
+                }
+                ?>
+                <div class="menu-item"><a href="../admin/schedule_instructor.php"> <i class="far fa-clock"></i> View
+                        Schedule</a></div>
+
+                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </a>
             </div>
         </div>
 
         <div class="content">
             <div class="feedback-container">
-                <button class="download-btn"><i class="fas fa-download"></i> Download All Feedback</button>
+                <?php
+                if (isset($_SESSION['role_id'])) {
+                    $rid = $_SESSION['role_id'];
+
+                    // Display the "Download All Feedback" button only for admin
+                    if ($rid == 3) { // If the user is an admin
+                        echo '<a href="../action/download_feedback.php" class="download-btn"><i class="fas fa-download"></i> Download All Feedback</a>';
+                    }
+                }
+                ?>
+
                 <h1>Admin Feedback Page</h1>
-                <div class="feedback-display" name = feedbackID>
+                <div class="feedback-display" name=feedbackID>
                     <table>
                         <thead>
                             <tr>
@@ -48,102 +100,41 @@
                                 <th>Rating</th>
                                 <th>Message</th>
                                 <th>Date</th>
-                                <th>Action</th>
+
+                                <?php
+                                if (isset($_SESSION['role_id'])) {
+                                    $rid = $_SESSION['role_id'];
+
+                                    // Display the "Action" header only for admin
+                                    if ($rid == 3) { // If the user is an admin
+                                        echo '<th>Action</th>';
+
+
+
+
+                                    }
+                                }
+                                ?>
                             </tr>
                         </thead>
+
+
                         <tbody>
-                        <?php include '../functions/feedback_admin_fxn.php'; ?>
+                            <?php include '../functions/feedback_admin_fxn.php'; ?>
                         </tbody>
                     </table>
                 </div>
 
             </div>
         </div>
-        
+
 
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script src="../js/admin_js/feedback_admin.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
-    <script>
-      // Function to handle deleting feedback
-function deleteFeedback(feedbackID) {
-    // Confirm with the user before deleting
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Send AJAX request to delete feedback
-            $.ajax({
-                type: 'POST',
-                url: '../action/deletefeedback_admin.php',
-                data: { action: 'delete', feedbackID: feedbackID },
-                success: function (response) {
-                    // Show success message
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Feedback Deleted',
-                        text: response,
-                        confirmButtonColor: '#3085d6'
-                    }).then((result) => {
-                        // Reload the page after deletion
-                        location.reload();
-                    });
-                },
-                error: function (xhr, status, error) {
-                    // Show error message
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong! Please try again later.',
-                        confirmButtonColor: '#3085d6'
-                    });
-                }
-            });
-        }
-    });
-}
-
-// Function to handle marking feedback as resolved
-function resolveFeedback(feedbackID) {
-    // Send AJAX request to mark feedback as resolved
-    $.ajax({
-        type: 'POST',
-        url: '../action/feedback_admin_actions.php',
-        data: { action: 'resolve', feedbackID: feedbackID },
-        success: function (response) {
-            // Show success message
-            Swal.fire({
-                icon: 'success',
-                title: 'Feedback Resolved',
-                text: response,
-                confirmButtonColor: '#3085d6'
-            }).then((result) => {
-                // Reload the page after resolving
-                location.reload();
-            });
-        },
-        error: function (xhr, status, error) {
-            // Show error message
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong! Please try again later.',
-                confirmButtonColor: '#3085d6'
-            });
-        }
-    });
-}
-  
-    </script>
 </body>
 
 </html>

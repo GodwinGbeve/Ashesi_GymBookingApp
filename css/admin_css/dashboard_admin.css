@@ -84,6 +84,7 @@ body {
 }
 
 /* Content Styles */
+/* Content Styles */
 .content {
     margin-left: 250px; /* Adjust for sidebar width */
     padding: 20px;
@@ -93,16 +94,24 @@ body {
 .summary {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align widgets starting from the left */
+    gap: 20px; /* Add gap between widgets */
     margin-bottom: 30px;
 }
 
 .metric {
     background-color: #f8f9fa;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
-    flex-basis: 23%; /* Adjust width to fit four per row */
-    margin-bottom: 20px; /* Add margin for spacing */
+    flex-basis: calc(25% - 20px); /* Adjust width to fit four per row */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .metric .icon {
@@ -116,13 +125,4 @@ body {
 
 .metric .label {
     font-size: 16px;
-}
-
-.upcoming-events ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.upcoming-events li {
-    margin-bottom: 10px;
 }

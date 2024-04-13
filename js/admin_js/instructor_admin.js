@@ -8,11 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupCancelBtn = document.querySelector('.popup-cancel-btn');
     const popupDeleteBtn = document.getElementById('popup-delete-btn');
 
-    // Function to show add instructor form
-    addInstructorBtn.addEventListener('click', function () {
-        addInstructorContainer.style.display = 'block';
-    });
-
     // Function to hide any container with close button
     closeBtns.forEach(function (closeBtn) {
         closeBtn.addEventListener('click', function () {
@@ -21,54 +16,65 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Function to add new instructor
+    // Function to show add instructor form
+    addInstructorBtn.addEventListener('click', function () {
+        addInstructorContainer.style.display = 'block';
+        // Reset the form fields and remove validation styling
+        addInstructorForm.reset();
+        addInstructorForm.classList.remove('was-validated');
+        addInstructorForm.querySelectorAll('.is-invalid').forEach(function (element) {
+            element.classList.remove('is-invalid');
+        });
+    });
+
+    // Function to handle form submission
     addInstructorForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
+        // Validate form fields
+        if (!addInstructorForm.checkValidity()) {
+            event.stopPropagation();
+            addInstructorForm.classList.add('was-validated');
+            return;
+        }
+
+        // Create FormData object from the form
         const formData = new FormData(this);
 
+        // Send AJAX request to handle form submission
         fetch(this.action, {
             method: this.method,
             body: formData
         })
         .then(response => response.text())
         .then(data => {
-            alert(data); // Display server response
+            // Check if response indicates success
             if (data.includes('successfully')) {
-                // Refresh instructor list after successful addition
-                fetchInstructorList();
+                // Close the add instructor form
                 addInstructorContainer.style.display = 'none';
-                this.reset(); // Reset form fields
+
+                // Show SweetAlert for successful addition
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: data, // Display response message
+                    showConfirmButton: false,
+                    timer: 2000 // Close after 2 seconds
+                }).then(() => {
+                    // Fetch updated instructor list and display on the screen
+                    fetchInstructorList();
+                });
+            } else {
+                // Show error message in case of failure
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: data // Display response message
+                });
             }
         })
         .catch(error => console.error('Error:', error));
     });
-
-    // Function to handle delete instructor action
-//     // Assuming instructor-id is the correct ID
-// const instructorIdInput = document.getElementById('instructor-id');
-// console.log('Instructor ID:', instructorIdInput); // Debugging line
-
-// // Function to handle delete instructor action
-// popupDeleteBtn.addEventListener('click', function () {
-//     const instructorId = instructorIdInput.value;
-
-//     fetch('../action/deleteInstructor_action.php?id=' + instructorId, {
-//         method: 'DELETE' 
-//     })
-//     .then(response => {
-//         if (response.ok) {
-//             // Instructor deleted successfully, perform necessary actions
-//             popupContainer.style.display = 'none';
-//             fetchInstructorList(); // Refresh instructor list
-//         } else {
-//             // Error handling
-//             console.error('Error:', response.statusText);
-//         }
-//     })
-//     .catch(error => console.error('Error:', error));
-// });
-
 
     // Function to fetch instructor list
     function fetchInstructorList() {

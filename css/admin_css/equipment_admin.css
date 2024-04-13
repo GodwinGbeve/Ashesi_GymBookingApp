@@ -109,18 +109,21 @@ body {
 }
 
 .back-btn {
-    background-color: transparent;
+    background-color:  #9F4446;
     border: none;
-    color: #9F4446;
+    color: white;
     cursor: pointer;
     font-size: 1rem;
     padding: 10px 20px;
     transition: all 0.3s ease;
 }
-
-.back-btn:hover {
-    background-color: rgba(159, 68, 70, 0.1);
+.back-btn a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
 }
+
+
+
 
 .equipment-grid {
     display: grid;
@@ -342,3 +345,5 @@ body {
 }
 
 
+
+ 

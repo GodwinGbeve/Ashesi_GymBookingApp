@@ -11,26 +11,21 @@
 </head>
 <body>
     <div class="landing-page">
+        <div class="background-video">
+            <video autoplay muted loop id="video-background">
+                <source src="../img/Sony A7IV Cinematic FITNESS VIDEO Featuring FE 16-35mm Power zoom - FE 4_PZ A7m4 Footage.mp4" type="video/mp4">
+            </video>
+        </div>
         <div class="header">
-            <img class="logo" src="./public/logo.png" alt="Ashesifit Logo">
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
+            <!-- Your header content goes here -->
         </div>
-        <div class="content">
-            <h1>REACH YOUR LIMITS AND GET TO THE NEXT LEVEL</h1>
-            <div class="cta">
+        <div class="main-content">
+            <div class="content">
+                <img class="logo" src="../img/Ashesilogo.png" alt="Ashesifit Logo">
+                <h1>REACH YOUR LIMITS AND GET TO THE NEXT LEVEL</h1>
                 <a href="../login/signup.php" class="signup-btn">SIGN UP</a>
-                <img class="signup-icon" src="./public/signup-icon.png" alt="Sign Up Icon">
+                <p class="copyright">&copy; 2024 Ashesifit. All Rights Reserved.</p>
             </div>
-        </div>
-        <div class="footer">
-            <p>&copy; 2024 Ashesifit. All Rights Reserved.</p>
         </div>
     </div>
 </body>

@@ -1,8 +1,8 @@
-
 <?php
 // Include the core.php file
 include '../settings/connection.php';
 include '../settings/core.php';
+include ('../functions/username_fxn.php');
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -21,6 +21,7 @@ $userData = mysqli_fetch_assoc($userResult);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,32 +30,71 @@ $userData = mysqli_fetch_assoc($userResult);
     <link rel="stylesheet" href="../css/admin_css/profile_admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
+
 <body>
     <div class="admin-reports-page">
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="reports-icon"><i class="fas fa-chart-bar"></i></div>
+                <span class="material-symbols-outlined">
+                    exercise</span>
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                    $userId = $_SESSION['user_id'];
+                    $userName = getUserName($userId, $con);
+                    echo '<div class="user-info">';
+
+                    echo '  <strong>' . $userName . '</strong>'; // Enclose user name in <strong> tag
+                    echo '</div>';
+                } else {
+                    echo "Error: User ID not set in session";
+                }
+                ?>
+                <div class="reports-icon"><i></i></div>
                 <div class="logo">AshesiFit</div>
+
             </div>
             <div class="sidebar-menu">
-            <div class="menu-item"><a href="../admin/profile_admin.php"><i class="fas fa-user"></i> Profile</a></div>
-                <div class="menu-item"><a href="../admin/dashboard_admin.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
-                <div class="menu-item"><a href="../admin/booking_admin.php"><i class="fas fa-calendar-alt"></i> Bookings</a></div>
-                <div class="menu-item"><a href="../admin/notification_admin.php"><i class="fas fa-bell"></i> Notification</a></div>
-                <div class="menu-item"><a href="../admin/feedback_admin.php"><i class="fas fa-comment"></i> Feedback</a></div>
-                <div class="menu-item"><a href="../admin/instructors_admin.php"><i class="fas fa-chalkboard-teacher"></i> Instructors</a></div>
-                <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i> Equipment</a></div>
-                <div class="menu-item active"><a href="../admin/reports_admin.php"><i class="fas fa-chart-bar"></i> Generate Reports</a></div>
-                <div class="menu-item active"><a href="../admin/schedule_instructor.php"> <i class="far fa-clock"></i> View Schedule</a></div>
-                <div class="menu-item"><a href="../admin/manageUsers_admin.php"><i class="fas fa-users"></i> Manage Users</a></div>
+                <div class="menu-item"><a href="../admin/profile_admin.php"><i class="fas fa-user"></i> Profile</a>
+                </div>
+                <div class="menu-item"><a href="../admin/dashboard_admin.php"><i class="fas fa-tachometer-alt"></i>
+                        Dashboard</a></div>
+                <div class="menu-item"><a href="../admin/booking_admin.php"><i class="fas fa-calendar-alt"></i>
+                        Bookings</a>
+                </div>
+                <div class="menu-item active"><a href="../admin/feedback_admin.php"><i class="fas fa-comment"></i>
+                        Feedback</a></div>
+                <div class="menu-item"><a href="../admin/instructors_admin.php"><i
+                            class="fas fa-chalkboard-teacher"></i>
+                        Instructors</a></div>
+                <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i>
+                        Equipment</a>
+                </div>
+
+                <?php
+                if (isset($_SESSION['role_id'])) {
+                    $rid = $_SESSION['role_id'];
+                    if ($rid == 3) { // If the user is an admin
+                        ?>
+                        <div class="menu-item"><a href="../admin/reports_admin.php"><i class="fas fa-chart-bar"></i> Generate
+                                Reports</a></div>
+                        <div class="menu-item"><a href="../admin/manageUsers_admin.php"><i class="fas fa-users"></i> Manage
+                                Users</a></div>
+                        <?php
+                    }
+                }
+                ?>
+                <div class="menu-item"><a href="../admin/schedule_instructor.php"> <i class="far fa-clock"></i> View
+                        Schedule</a></div>
             </div>
             <a href="../login/login.php" class="logout-link">
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </a>
         </div>
         <div class="content">
-             <div class="profile-content">
+            <div class="profile-content">
                 <div class="container rounded bg-white mt-5 mb-5">
                     <div class="row">
                         <!-- Profile picture section -->
@@ -68,25 +108,46 @@ $userData = mysqli_fetch_assoc($userResult);
                                 </div>
                                 <div class="row mt-2">
                                     <!-- Display admin profile information -->
-                                    <div class="col-md-6">
-                                        <label class="labels">Username</label>
-                                        <span>
-                                            <?php echo $adminData['username']; ?>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="labels">Email</label>
-                                        <span>
-                                            <?php echo $adminData['email']; ?>
-                                        </span>
-                                    </div>
+                                    <form id="profileForm" method="post" action="../functions/profile_admin_fxn.php">
+                                        <div class="col-md-6">
+                                            <label class="labels">Username</label>
+                                            <span><?php echo $userData['username']; ?></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="labels">Email</label>
+                                            <span><?php echo $userData['email']; ?></span>
+                                        </div>
                                 </div>
                                 <!-- Additional fields can be added as needed -->
-                                <div class="mt-5 text-center">
-                                    <button class="btn btn-primary profile-button" id="saveProfileBtn"
-                                        type="submit">Save Profile</button>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label class="labels">Date of Birth</label>
+                                        <span><?php echo $userData['date_of_birth']; ?></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="labels">Residence</label>
+                                        <select class="form-control" name="residence">
+                                            <option value="Off-campus" <?php if ($userData['residence'] === 'Off-campus')
+                                                echo 'selected'; ?>>Off-campus</option>
+                                            <option value="On-campus" <?php if ($userData['residence'] === 'On-campus')
+                                                echo 'selected'; ?>>On-campus</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="labels">Fitness goals</label>
+                                        <input type="text" class="form-control" name="fitness_goal"
+                                            value="<?php echo $userData['fitness_goal']; ?>">
+                                        <input type="hidden" class="form-control" name="userID"
+                                            value="<?php echo $userData['userID']; ?>">
+
+                                    </div>
                                 </div>
-                                </form>
+                                <div class="mt-5 text-center">
+
+                                    <button class="btn btn-primary profile-button" id="saveProfileBtn"
+                                        type="button">Save Profile</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,5 +155,54 @@ $userData = mysqli_fetch_assoc($userResult);
             </div>
         </div>
     </div>
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Include Bootstrap Bundle JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function () {
+            // Save profile button click event
+            $('#saveProfileBtn').click(function () {
+                // Submit the profile form
+                $('#profileForm').submit();
+            });
+
+            // Submit profile form
+            $('#profileForm').submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // AJAX request to update profile
+                $.ajax({
+                    type: 'POST',
+                    url: '../functions/profile_admin_fxn.php',
+                    data: $('#profileForm').serialize(), // Serialize form data
+                    success: function (response) {
+                        // Display success message
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Your profile has been updated.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function () {
+                            window.location.href = '../admin/profile_admin.php'; // Redirect after success
+                        });
+                    },
+                    error: function () {
+                        // Display error message
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to update profile. Please try again.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

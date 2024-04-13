@@ -26,20 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($updateResult) {
         // Profile update successful
         $_SESSION['success'] = "Profile updated successfully.";
-        header('Location: ../view/profile.php');
-        exit();
     } else {
         // Profile update failed
         $_SESSION['error'] = "Failed to update profile. Please try again.";
-        header('Location: ../view/profile.php');
-        exit();
     }
 } else {
     // If the form is not submitted, redirect to the profile page
-    header('Location: ../view/profile.php');
-    exit();
+    $_SESSION['error'] = "Invalid request. Please try again.";
 }
 
 // Close the database connection
 mysqli_close($con);
+
+// Redirect back to the profile page
+header('Location: ../view/profile.php');
+exit();
 ?>

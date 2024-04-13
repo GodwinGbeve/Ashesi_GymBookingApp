@@ -2,7 +2,7 @@
 // functions/manage_admin_fxn.php
 
 // Function to fetch and display user table
-function displayUserTable() {
+
     // Include database connection
     include_once('../settings/connection.php');
 
@@ -41,8 +41,8 @@ function displayUserTable() {
 
     // Close database connection
     mysqli_close($con);
-}
+
 
 // Call the function to display user table
-displayUserTable();
+
 ?>

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(response => response.text())
         .then(data => {
-            alert(data); // Display server response
+            //alert(data); // Display server response
             if (data.includes('successfully')) {
                 // Refresh equipment list after successful addition
                 fetchEquipmentList();

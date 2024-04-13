@@ -21,7 +21,7 @@ if ($result) {
             echo "</div>";
         }
     } else {
-        echo "0 results";
+        echo "No equipment";
     }
 } else {
     echo "Error: " . mysqli_error($con);

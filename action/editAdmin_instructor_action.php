@@ -2,6 +2,7 @@
 // Include database connection
 include_once('../settings/connection.php');
 
+
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate and sanitize inputs
@@ -10,6 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $timeAvailable = mysqli_real_escape_string($con, $_POST['time-available']);
     
     echo $instructorID, $instructorName, $timeAvailable;
+    
+
     
     // Check if image file is selected
     if(isset($_FILES['edit-instructor-image']) && !empty($_FILES['edit-instructor-image']['name'])){

@@ -131,3 +131,6 @@ body {
 .schedule .delete-icon:hover {
     color: #7f2a2c;
 }
+.delete-btn,
+.cancel-btn,.completed-btn {
+    text-decoration: none;}

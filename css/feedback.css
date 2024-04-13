@@ -1,68 +1,95 @@
-/* Feedback Page Styles */
-.feedback-page {
-    display: flex;
-    background-color: #f0f0f0; /* Light gray background */
-    color: #333; /* Dark text color */
-    font-family: 'Poppins', sans-serif;
-    width: 100vw;
-    height: 100vh;
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
+/* Sidebar Styles */
 .sidebar {
-    width: 250px;
-    padding-top: 20px;
-    background-color: #fff; /* White background */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  background-color: #9F4446; /* Theme color */
+  color: white;
+  height: 100%;
+  padding-top: 20px;
 }
 
 .sidebar-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #ddd; /* Gray border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
-.sidebar-header .logo {
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 10px;
+.logo {
+  font-size: 1.5rem;
+  margin-left: 10px;
 }
 
 .sidebar-menu {
-    padding: 20px;
+  padding: 0;
+  list-style-type: none;
+  margin: 20px 0;
 }
 
 .menu-item {
-    padding: 10px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.menu-item i {
-    margin-right: 10px;
+.menu-item a {
+  text-decoration: none;
+  color: #fff; /* White color */
+}
+
+.menu-item a:hover {
+  text-decoration: none;
+  color: #fff; /* White color */
+}
+
+.menu-item.active a {
+  border-bottom: none;
+}
+
+.menu-item.active {
+  border-bottom: none;
+}
+
+.logout-link {
+  text-decoration: none;
 }
 
 .logout-btn {
-    margin-top: auto; /* Push logout button to the bottom */
-    width: 17.5%;
-    padding: 10px;
-    background-color: #9F4446; /* Red theme color */
-    color: #fff; /* White text color */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: fixed;
-    bottom: 0;
+  background-color: #9F4446; /* Theme color */
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s ease;
 }
 
 .logout-btn:hover {
-    background-color: #7b2a2d; /* Darker red on hover */
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.feedback-content {
-    flex: 1;
-    padding: 10px;
+/* Content Styles */
+.content {
+  margin-left: 250px; /* Adjust for sidebar width */
+  padding: 20px;
 }
+
+
 
 /* Booking Content Styles */
 .feedback-container {

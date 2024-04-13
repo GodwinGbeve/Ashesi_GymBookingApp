@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include_once('../settings/connection.php');
+include_once ('../settings/connection.php');
 
 // Fetch gym instructors data from the database
 $sql = "SELECT * FROM GymInstructors";
@@ -21,20 +21,23 @@ if ($result) {
             // You can display additional information such as time availability here
 
             // Booking form modal
-            echo '<div id="bookingForm' . $row['instructorID'] . '" class="booking-form-modal">';
-            echo '  <div class="booking-form-content">';
-            echo '      <span class="close" onclick="closeBookingForm(' . $row['instructorID'] . ')">&times;</span>';
-            echo '      <form action="../action/booking_action.php" method="post">';
-            echo '          <input type="hidden" name="instructor" value="' . $row['instructorID'] . '">';
-            echo '          <label for="booking_date">Select Date:</label>';
-            echo '          <input type="date" id="booking_date" name="date" required>';
-            echo '          <label for="booking_time">Select Time:</label>';
-            echo '          <input type="time" id="booking_time" name="time" required>';
-            echo '          <button type="submit" class="book-now-btn">Book Now</button>';
-            echo '          <button type="button" onclick="closeBookingForm(' . $row['instructorID'] . ')" class="cancel-btn">Cancel</button>';
-            echo '      </form>';
-            echo '  </div>';
-            echo '</div>'; // Close booking form modal
+            // Booking form modal
+echo '<div id="bookingForm' . $row['instructorID'] . '" class="booking-form-modal">';
+echo '  <div class="booking-form-content">';
+echo '      <span class="close" onclick="closeBookingForm(' . $row['instructorID'] . ')">&times;</span>';
+echo '      <form action="../action/booking_action.php" method="post">';
+echo '          <input type="hidden" name="instructor" value="' . $row['instructorID'] . '">';
+echo '          <label for="booking_date">Select Date:</label>';
+echo '          <input type="date" id="booking_date_' . $row['instructorID'] . '" name="date" min="' . date('Y-m-d') . '" required>';
+echo '          <label for="booking_time">Select Time:</label>';
+echo '          <input type="time" id="booking_time_' . $row['instructorID'] . '" name="time" required>';
+echo '          <button type="submit" class="book-now-btn">Book Now</button>';
+echo '          <button type="button" onclick="closeBookingForm(' . $row['instructorID'] . ')" class="cancel-btn">Cancel</button>';
+echo '      </form>';
+echo '  </div>';
+echo '</div>';
+
+            // Close booking form modal
 
             echo "</div>"; // Close instructor item div
         }
