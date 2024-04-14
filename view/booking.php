@@ -227,9 +227,40 @@ checkLogin();
             });
         });
     </script>
-</body>
 
-</html>
+
+<script>
+    // Function to open the edit popup
+function openEditPopup() {
+    document.getElementById('editPopup').style.display = 'block';
+}
+
+// Function to close the edit popup
+function closeEditPopup() {
+    document.getElementById('editPopup').style.display = 'none';
+}
+
+// Attach event listener to edit button icons
+document.querySelectorAll('.edit-icon').forEach(item => {
+    item.addEventListener('click', event => {
+        event.preventDefault();
+        const bookingID = item.getAttribute('data-id');
+        const date = item.closest('tr').querySelector('.date-column').textContent;
+        const time = item.closest('tr').querySelector('.time-column').textContent;
+        document.getElementById('editBookingID').value = bookingID;
+        document.getElementById('editDate').value = date;
+        document.getElementById('editTime').value = time;
+        openEditPopup();
+    });
+});
+
+// Close edit popup when the close button is clicked
+document.querySelector('.close-edit-popup').addEventListener('click', () => {
+    closeEditPopup();
+});
+
+</script>
+
 <script src="../js/booking.js"></script>
 <!-- Include SweetAlert library -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -293,6 +324,7 @@ checkLogin();
 
     // Call the function when the page is loaded
     window.addEventListener('load', setMinTime);
+
 </script>
 
 
