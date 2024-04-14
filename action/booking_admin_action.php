@@ -13,7 +13,7 @@ if (isset($_POST['action'])) {
                 $bookingID = $_POST['bookingID'];
 
                 // Prepare SQL statement
-                $sql = "DELETE FROM Bookings WHERE bookingID = ?";
+                $sql = "DELETE FROM bookings WHERE bookingID = ?";
 
                 // Prepare and bind parameters
                 $stmt = mysqli_prepare($con, $sql);
@@ -39,7 +39,7 @@ if (isset($_POST['action'])) {
                 $bookingID = $_POST['bookingID'];
 
                 // Prepare SQL statement
-                $sql = "UPDATE Bookings SET status = 'Cancelled' WHERE bookingID = ?";
+                $sql = "UPDATE bookings SET status = 'Cancelled' WHERE bookingID = ?";
 
                 // Prepare and bind parameters
                 $stmt = mysqli_prepare($con, $sql);
