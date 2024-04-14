@@ -1,7 +1,7 @@
 <?php
 
 $SERVER = "localhost";
-$USERNAME = "root";
+$USERNAME = "51.145.20.224";
 $PASSWD = "";
 $DATABASE = "gym_book";
 
