@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-//include_once ('../settings/connection.php');
+include_once ('../settings/connection.php');
 include_once ('../settings/core.php');
 include ('../functions/username_fxn.php');
 

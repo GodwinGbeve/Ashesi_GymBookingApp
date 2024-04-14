@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $instructorID = $_POST['instructor']; // Add instructor ID from the form
 
     // Update the booking in the database
-    $updateQuery = "UPDATE Bookings SET date='$date', time_slot='$time', instructorID='$instructorID' WHERE bookingID='$bookingID'";
+    $updateQuery = "UPDATE bookings SET date='$date', time_slot='$time', instructorID='$instructorID' WHERE bookingID='$bookingID'";
     $updateResult = mysqli_query($con, $updateQuery);
 
     if ($updateResult) {
@@ -30,5 +30,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Close the database connection
-mysqli_close($con);
+
 ?>
