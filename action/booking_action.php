@@ -3,7 +3,6 @@
 include '../settings/connection.php';
 
 include '../settings/core.php';
-
 // Start the session
 //session_start();
 
