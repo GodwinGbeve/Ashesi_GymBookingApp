@@ -1,6 +1,6 @@
 <?php
 
-$SERVER = "localhost:3306";
+$SERVER = "localhost";
 $USERNAME = "root";
 $PASSWD = "";
 $DATABASE = "gym_book";

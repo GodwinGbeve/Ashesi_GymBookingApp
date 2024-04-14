@@ -21,21 +21,19 @@ checkLogin();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
 </head>
 
 <body>
     <div class="feedback-page">
         <div class="sidebar">
             <div class="sidebar-header">
-            <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined">
                     exercise</span>
                 <?php
                 if (isset($_SESSION['user_id'])) {
                     $userId = $_SESSION['user_id'];
                     $userName = getUserName($userId, $con);
                     echo '<div class="user-info">';
-
                     echo '  <strong>' . $userName . '</strong>'; // Enclose user name in <strong> tag
                     echo '</div>';
                 } else {
@@ -46,11 +44,12 @@ checkLogin();
                 <div class="logo">Ashesifit</div>
             </div>
             <div class="sidebar-menu">
-            <div class="menu-item"><a href="profile.php"><i class="fas fa-user"> </i> Profile</a></div>
+                <div class="menu-item"><a href="profile.php"><i class="fas fa-user"> </i> Profile</a></div>
                 <div class="menu-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>Dashboard</a></div>
                 <div class="menu-item"><a href="booking.php"><i class="fas fa-calendar-alt"></i>Bookings</a></div>
                 <div class="menu-item"><a href="feedback.php"><i class="fas fa-comment"></i>Feedback</a></div>
-                <div class="menu-item"><a href="instructors.php"><i class="fas fa-chalkboard-teacher"></i>Instructors</a></div>
+                <div class="menu-item"><a href="instructors.php"><i
+                            class="fas fa-chalkboard-teacher"></i>Instructors</a></div>
                 <div class="menu-item"><a href="equipment.php"><i class="fas fa-dumbbell"></i>Equipment</a></div>
             </div>
             <a href="../login/login.php">
@@ -61,22 +60,22 @@ checkLogin();
             <div class="booking-content">
                 <h1>Book your Gym Session</h1>
                 <button class="toggle-form-btn">Open Booking Form</button>
-                <div class="booking-form-wrapper">
-                    <div class="close-button">
-                        <span class="close-icon">&#10005;</span>
-                    </div>
+                <div class="booking-form-wrapper" style="display: none;">
                     <div class="booking-form">
-                        <form class="user" action="../action/booking_action.php" method="post" name="bookingForm"
-                            id="bookingForm">
+                        <div class="close-button">
+                            <span class="close-icon">&#10005;</span>
+                        </div>
+                        <form id="bookingForm" class="user" action="../action/booking_action.php" method="post"
+                            name="bookingForm">
                             <label for="date">Select Date:</label>
-<input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>" required>
+                            <input type="date" id="date" name="date" min="<?php echo date('Y-m-d'); ?>" required>
 
                             <label for="time">Select Time:</label>
                             <input type="time" id="time" name="time" required>
+
                             <label for="instructor">Select Gym Instructor:</label>
                             <select id="instructor" name="instructor" required>
                                 <option value="">Select an instructor</option>
-                                <!-- PHP code to fetch gym instructors from the database and populate the dropdown -->
                                 <?php
                                 $query = "SELECT * FROM GymInstructors";
                                 $result = mysqli_query($con, $query);
@@ -87,10 +86,12 @@ checkLogin();
                                 }
                                 ?>
                             </select>
+
                             <button type="submit" class="book-now-btn">Book Now</button>
                         </form>
                     </div>
                 </div>
+
             </div>
             <table class="booking-table">
                 <thead>
@@ -103,66 +104,111 @@ checkLogin();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    // Fetch bookings along with the corresponding instructor information
-                    $query = "SELECT b.*, i.instructorName FROM Bookings b JOIN GymInstructors i ON b.instructorID = i.instructorID";
-                    $result = mysqli_query($con, $query);
-
-                    // Check if there are any bookings
-                    if (mysqli_num_rows($result) > 0) {
-                    
-                        // Loop through each row and display the booking information
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['userID'] == $_SESSION['user_id']){
-                            echo "<tr>";
-                            echo "<td class='date-column'>" . $row['date'] . "</td>";
-                            echo "<td class='time-column'>" . $row['time_slot'] . "</td>";
-                            echo "<td class='instructor-column'>" . $row['instructorName'] . "</td>"; // Display instructor name
-                            echo "<td><a href='#' class='edit-icon' data-id='" . $row['bookingID'] . "'><i class='fas fa-edit'></i></a></td>";
-                            echo "<td><a href='#' class='delete-icon' onclick='confirmDelete(" . $row['bookingID'] . ")'><i class='fas fa-trash-alt'></i></a></td>";
-                            echo "</tr>";
-                            }
-                        }
-                    } else {
-                        // If no bookings are found, display a message
-                        echo "<tr><td colspan='5'>No bookings found</td></tr>";
-                    }
-                    
-                    ?>
+                    <?php include '../functions/booking_fetch.php'; ?>
                 </tbody>
             </table>
 
-
             <div id="editPopup" class="edit-popup">
-    <div class="edit-popup-content">
-        <span class="close-edit-popup">&times;</span>
-        <h2>Edit Booking</h2>
-        <form id="editBookingForm" action="../action/editBook_action.php" method="post">
-            <input type="hidden" id="editBookingID" name="booking_id">
-            <label for="editDate">Select Date:</label>
-            <input type="date" id="editDate" name="date" min="<?php echo date('Y-m-d'); ?>" required>
-            <label for="editTime">Select Time:</label>
-            <input type="time" id="editTime" name="time"   required>
-            <label for="editInstructor">Select Gym Instructor:</label>
-            <select id="editInstructor" name="instructor" required>
-                <option value="">Select an instructor</option>
-                <!-- PHP code to fetch gym instructors from the database and populate the dropdown -->
-                <?php
-                $query = "SELECT * FROM GymInstructors";
-                $result = mysqli_query($con, $query);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<option value='" . $row['instructorID'] . "'>" . $row['instructorName'] . "</option>";
-                    }
-                }
-                ?>
-            </select>
+                <div class="edit-popup-content">
+                    <span class="close-edit-popup">&times;</span>
+                    <h2>Edit Booking</h2>
+                    <form id="editBookingForm" action="../action/editBook_action.php" method="post">
+                        <input type="hidden" id="editBookingID" name="booking_id">
+                        <label for="editDate">Select Date:</label>
+                        <input type="date" id="editDate" name="date" min="<?php echo date('Y-m-d'); ?>" required>
+                        <label for="editTime">Select Time:</label>
+                        <input type="time" id="editTime" name="time" required>
+                        <label for="editInstructor">Select Gym Instructor:</label>
+                        <select id="editInstructor" name="instructor" required>
+                            <option value="">Select an instructor</option>
+                            <!-- PHP code to fetch gym instructors from the database and populate the dropdown -->
+                            <?php
+                            $query = "SELECT * FROM GymInstructors";
+                            $result = mysqli_query($con, $query);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row['instructorID'] . "'>" . $row['instructorName'] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
 
-            <button type="submit" class="book-now-btn">Update</button>
-        </form>
+                        <button type="submit" class="book-now-btn">Update</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleFormBtn = document.querySelector('.toggle-form-btn');
+            const bookingFormWrapper = document.querySelector('.booking-form-wrapper');
+
+            toggleFormBtn.addEventListener('click', () => {
+                bookingFormWrapper.style.display = bookingFormWrapper.style.display === 'none' ? 'block' : 'none';
+            });
+
+            const closeButton = document.querySelector('.close-button');
+            const formWrapper = document.querySelector('.booking-form-wrapper');
+
+            closeButton.addEventListener('click', function () {
+                formWrapper.style.display = 'none';
+            });
+
+            const toggleFormButton = document.querySelector('.toggle-form-btn');
+
+            toggleFormButton.addEventListener('click', function () {
+                formWrapper.style.display = 'block';
+            });
+
+            const bookingForm = document.getElementById('bookingForm');
+
+            bookingForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                fetch('../action/booking_action.php', {
+                    method: 'POST',
+                    body: new FormData(bookingForm),
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Your booking has been confirmed.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = '../view/booking.php';
+                                }
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Failed to submit the booking. Please try again later.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An unexpected error occurred. Please try again later.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
             <script src="../js/booking.js"></script>
             <!-- Include SweetAlert library -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -187,31 +233,31 @@ checkLogin();
                 }
             </script>
 
-<script>
-document.getElementById('bookingForm').addEventListener('submit', function(event) {
-    // Get the selected date and time from the form
-    var selectedDate = new Date(document.getElementById('date').value);
-    var selectedTime = document.getElementById('time').value;
-    var selectedDateTime = new Date(selectedDate.toDateString() + ' ' + selectedTime);
+            <script>
+                document.getElementById('bookingForm').addEventListener('submit', function (event) {
+                    // Get the selected date and time from the form
+                    var selectedDate = new Date(document.getElementById('date').value);
+                    var selectedTime = document.getElementById('time').value;
+                    var selectedDateTime = new Date(selectedDate.toDateString() + ' ' + selectedTime);
 
-    // Get the current date and time
-    var today = new Date();
-    var currentTime = new Date(today.toDateString() + ' ' + today.toLocaleTimeString());
+                    // Get the current date and time
+                    var today = new Date();
+                    var currentTime = new Date(today.toDateString() + ' ' + today.toLocaleTimeString());
 
-    // Compare the selected date and time with the current date and time
-    if (selectedDateTime < currentTime) {
-        // Prevent form submission
-        event.preventDefault();
-        // Display an error message using SweetAlert2
-        Swal.fire({
-            icon: 'error',
-            title: 'Invalid Date/Time',
-            text: 'Please select a date/time that is today or later.'
-        });
-    }
-});
-</script>
-<script>
+                    // Compare the selected date and time with the current date and time
+                    if (selectedDateTime < currentTime) {
+                        // Prevent form submission
+                        event.preventDefault();
+                        // Display an error message using SweetAlert2
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Date/Time',
+                            text: 'Please select a date/time that is today or later.'
+                        });
+                    }
+                });
+            </script>
+            <script>
                 // JavaScript function to dynamically set min attribute of time input field
                 function setMinTime() {
                     var currentDate = new Date();
