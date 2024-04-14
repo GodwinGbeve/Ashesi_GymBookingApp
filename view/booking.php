@@ -104,7 +104,28 @@ checkLogin();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include '../functions/booking_fetch.php'; ?>
+                    <?php $query = "SELECT b.*, i.instructorName FROM bookings b JOIN GymInstructors i ON b.instructorID = i.instructorID";
+                    $result = mysqli_query($con, $query);
+
+                    // Check if there are any bookings
+                    if (mysqli_num_rows($result) > 0) {
+
+                        // Loop through each row and display the booking information
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['userID'] == $_SESSION['user_id']) {
+                                echo "<tr>";
+                                echo "<td class='date-column'>" . $row['date'] . "</td>";
+                                echo "<td class='time-column'>" . $row['time_slot'] . "</td>";
+                                echo "<td class='instructor-column'>" . $row['instructorName'] . "</td>"; // Display instructor name
+                                echo "<td><a href='#' class='edit-icon' data-id='" . $row['bookingID'] . "'><i class='fas fa-edit'></i></a></td>";
+                                echo "<td><a href='#' class='delete-icon' onclick='confirmDelete(" . $row['bookingID'] . ")'><i class='fas fa-trash-alt'></i></a></td>";
+                                echo "</tr>";
+                            }
+                        }
+                    } else {
+                        // If no bookings are found, display a message
+                        echo "<tr><td colspan='5'>No bookings found</td></tr>";
+                    } ?>
                 </tbody>
             </table>
 
@@ -209,90 +230,90 @@ checkLogin();
 </body>
 
 </html>
-            <script src="../js/booking.js"></script>
-            <!-- Include SweetAlert library -->
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/booking.js"></script>
+<!-- Include SweetAlert library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-            <!-- JavaScript function for delete confirmation -->
-            <script>
-                function confirmDelete(bookingID) {
-                    Swal.fire({
-                        title: 'Are you sure?',
-                        text: 'You will not be able to recover this booking!',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // If user confirms, redirect to delete action page with bookingID
-                            window.location.href = '../action/deleteBook_action.php?id=' + bookingID;
-                        }
-                    });
-                }
-            </script>
+<!-- JavaScript function for delete confirmation -->
+<script>
+    function confirmDelete(bookingID) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this booking!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If user confirms, redirect to delete action page with bookingID
+                window.location.href = '../action/deleteBook_action.php?id=' + bookingID;
+            }
+        });
+    }
+</script>
 
-            <script>
-                document.getElementById('bookingForm').addEventListener('submit', function (event) {
-                    // Get the selected date and time from the form
-                    var selectedDate = new Date(document.getElementById('date').value);
-                    var selectedTime = document.getElementById('time').value;
-                    var selectedDateTime = new Date(selectedDate.toDateString() + ' ' + selectedTime);
+<script>
+    document.getElementById('bookingForm').addEventListener('submit', function (event) {
+        // Get the selected date and time from the form
+        var selectedDate = new Date(document.getElementById('date').value);
+        var selectedTime = document.getElementById('time').value;
+        var selectedDateTime = new Date(selectedDate.toDateString() + ' ' + selectedTime);
 
-                    // Get the current date and time
-                    var today = new Date();
-                    var currentTime = new Date(today.toDateString() + ' ' + today.toLocaleTimeString());
+        // Get the current date and time
+        var today = new Date();
+        var currentTime = new Date(today.toDateString() + ' ' + today.toLocaleTimeString());
 
-                    // Compare the selected date and time with the current date and time
-                    if (selectedDateTime < currentTime) {
-                        // Prevent form submission
-                        event.preventDefault();
-                        // Display an error message using SweetAlert2
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Invalid Date/Time',
-                            text: 'Please select a date/time that is today or later.'
-                        });
-                    }
-                });
-            </script>
-            <script>
-                // JavaScript function to dynamically set min attribute of time input field
-                function setMinTime() {
-                    var currentDate = new Date();
-                    var currentHour = currentDate.getHours();
-                    var currentMinute = currentDate.getMinutes();
-                    var currentTime = currentHour.toString().padStart(2, '0') + ':' + currentMinute.toString().padStart(2, '0');
+        // Compare the selected date and time with the current date and time
+        if (selectedDateTime < currentTime) {
+            // Prevent form submission
+            event.preventDefault();
+            // Display an error message using SweetAlert2
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Date/Time',
+                text: 'Please select a date/time that is today or later.'
+            });
+        }
+    });
+</script>
+<script>
+    // JavaScript function to dynamically set min attribute of time input field
+    function setMinTime() {
+        var currentDate = new Date();
+        var currentHour = currentDate.getHours();
+        var currentMinute = currentDate.getMinutes();
+        var currentTime = currentHour.toString().padStart(2, '0') + ':' + currentMinute.toString().padStart(2, '0');
 
-                    // Set the min attribute for the editTime input field
-                    var editTimeInput = document.getElementById('editTime');
-                    editTimeInput.min = currentTime;
-                }
+        // Set the min attribute for the editTime input field
+        var editTimeInput = document.getElementById('editTime');
+        editTimeInput.min = currentTime;
+    }
 
-                // Call the function when the page is loaded
-                window.addEventListener('load', setMinTime);
-            </script>
+    // Call the function when the page is loaded
+    window.addEventListener('load', setMinTime);
+</script>
 
 
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script> $(document).ready(function () { // Booking confirmation
-                    $("#bookingForm").submit(function (event) {
-                        event.preventDefault();
-                        Swal.fire({
-                            title: 'Success!', text: 'Your booking has been confirmed.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
-                    }); // Editing confirmation 
-                    $("#editBookingForm").submit(function (event) {
-                        event.preventDefault(); Swal.fire({
-                            title: 'Success!', text: 'Your booking has been updated.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
-                    });
-                }); </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script> $(document).ready(function () { // Booking confirmation
+        $("#bookingForm").submit(function (event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Success!', text: 'Your booking has been confirmed.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
+        }); // Editing confirmation 
+        $("#editBookingForm").submit(function (event) {
+            event.preventDefault(); Swal.fire({
+                title: 'Success!', text: 'Your booking has been updated.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => { if (result.isConfirmed) { window.location.href = '../view/booking.php'; } });
+        });
+    }); </script>
 </body>
 
 </html>

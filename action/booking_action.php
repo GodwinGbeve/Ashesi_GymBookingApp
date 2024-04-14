@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = 'pending'; // Default status for new bookings
 
     // Insert the booking into the database
-    $insertQuery = "INSERT INTO Bookings (userID, instructorID, date, time_slot, status) VALUES ('$userID', '$instructorID', '$date', '$time', '$status')";
+    $insertQuery = "INSERT INTO bookings (userID, instructorID, date, time_slot, status) VALUES ('$userID', '$instructorID', '$date', '$time', '$status')";
     $insertResult = mysqli_query($con, $insertQuery);
 
     if ($insertResult) {
