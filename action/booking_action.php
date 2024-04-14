@@ -2,8 +2,10 @@
 // Include the connection file
 include '../settings/connection.php';
 
+include '../settings/core.php';
+
 // Start the session
-session_start();
+//session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -41,5 +43,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Close the database connection
-mysqli_close($con);
+//mysqli_close($con);
 ?>
