@@ -1,20 +1,10 @@
 <?php
 // Include database connection file
-include_once ('../settings/connection.php');
-include_once ('../settings/core.php');
+include ('../settings/connection.php');
+include ('../settings/core.php');
 include ('../functions/username_fxn.php');
-
-global $con;
-
-// Fetch schedule data from the database
-$sql = "SELECT bookings.bookingID, bookings.date, bookings.time_slot, Users.username AS user_name, 
-               Gyminstructors.instructorName AS instructor_name, bookings.status
-        FROM bookings
-        INNER JOIN Users ON bookings.userID = Users.userID
-        INNER JOIN Gyminstructors ON bookings.instructorID = Gyminstructors.instructorID";
-
-$result = mysqli_query($con, $sql);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -105,6 +95,17 @@ $result = mysqli_query($con, $sql);
                             </tr>
                         </thead>
                         <tbody>
+                            <?php
+                            // Fetch schedule data from the database
+                            $sql = "SELECT bookings.bookingID, bookings.date, bookings.time_slot, Users.username AS user_name, 
+               Gyminstructors.instructorName AS instructor_name, bookings.status
+        FROM bookings
+        INNER JOIN Users ON bookings.userID = Users.userID
+        INNER JOIN Gyminstructors ON bookings.instructorID = Gyminstructors.instructorID";
+
+                            $result = mysqli_query($con, $sql);
+                            ?>
+
                             <?php
                             // Check if there are any rows returned
                             if (mysqli_num_rows($result) > 0) {
