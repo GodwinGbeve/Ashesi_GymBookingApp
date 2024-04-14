@@ -98,10 +98,10 @@ include ('../functions/username_fxn.php');
                             <?php
                             // Fetch schedule data from the database
                             $sql = "SELECT bookings.bookingID, bookings.date, bookings.time_slot, Users.username AS user_name, 
-               Gyminstructors.instructorName AS instructor_name, bookings.status
+               GymInstructors.instructorName AS instructor_name, bookings.status
         FROM bookings
         LEFT JOIN Users ON bookings.userID = Users.userID
-        LEFT JOIN Gyminstructors ON bookings.instructorID = Gyminstructors.instructorID";
+        LEFT JOIN GymInstructors ON bookings.instructorID = GymInstructors.instructorID";
 
                             $result = mysqli_query($con, $sql);
                             ?>
