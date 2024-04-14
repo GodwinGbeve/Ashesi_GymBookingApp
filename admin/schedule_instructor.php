@@ -4,6 +4,8 @@ include "../settings/connection.php";
 include_once ('../settings/core.php');
 include ('../functions/username_fxn.php');
 
+global $con;
+
 // Fetch schedule data from the database
 $sql = "SELECT bookings.bookingID, bookings.date, bookings.time_slot, Users.username AS user_name, 
                Gyminstructors.instructorName AS instructor_name, bookings.status

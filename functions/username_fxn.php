@@ -1,6 +1,8 @@
 <?php
-include "../settings/connection.php"; 
-include_once "../settings/core.php"; 
+// include "../settings/connection.php"; 
+// include_once "../settings/core.php"; 
+
+
 function getUserName($userId, $con) {
     $query = "SELECT username FROM Users WHERE userID = $userId";
     $result = mysqli_query($con, $query);
