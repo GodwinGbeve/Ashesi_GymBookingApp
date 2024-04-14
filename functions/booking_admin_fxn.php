@@ -1,12 +1,12 @@
 <?php
 // Include database connection file
-include '../settings/connection.php';
+include ('../settings/connection.php');
 
 // Fetch bookings from the database
-$query = "SELECT Bookings.bookingID, Bookings.userID, Users.username, Bookings.instructorID, GymInstructors.instructorName, Bookings.date, Bookings.time_slot, Bookings.status 
-          FROM Bookings 
-          LEFT JOIN Users ON Bookings.userID = Users.userID 
-          LEFT JOIN GymInstructors ON Bookings.instructorID = GymInstructors.instructorID";
+$query = "SELECT bookings.bookingID, bookings.userID, Users.username, bookings.instructorID, GymInstructors.instructorName, bookings.date, bookings.time_slot, bookings.status 
+          FROM bookings 
+          LEFT JOIN Users ON bookings.userID = Users.userID 
+          LEFT JOIN GymInstructors ON bookings.instructorID = GymInstructors.instructorID";
 
 $result = mysqli_query($con, $query);
 

@@ -100,8 +100,8 @@ include ('../functions/username_fxn.php');
                             $sql = "SELECT bookings.bookingID, bookings.date, bookings.time_slot, Users.username AS user_name, 
                Gyminstructors.instructorName AS instructor_name, bookings.status
         FROM bookings
-        INNER JOIN Users ON bookings.userID = Users.userID
-        INNER JOIN Gyminstructors ON bookings.instructorID = Gyminstructors.instructorID";
+        LEFT JOIN Users ON bookings.userID = Users.userID
+        LEFT JOIN Gyminstructors ON bookings.instructorID = Gyminstructors.instructorID";
 
                             $result = mysqli_query($con, $sql);
                             ?>
