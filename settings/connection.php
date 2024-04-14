@@ -1,6 +1,6 @@
 <?php
 
-$SERVER = "51.145.20.224";
+$SERVER = "localhost";
 $USERNAME = "root";
 $PASSWD = "";
 $DATABASE = "gym_book";
