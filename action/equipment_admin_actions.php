@@ -10,11 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
     
     // Check if image file is selected
-    if(isset($_FILES['image']) && !empty($_FILES['image']['name'])){
-        $image = $_FILES['image']['name'];
-        $tempName = $_FILES['image']['tmp_name'];
-        $imageType = $_FILES['image']['type'];
-        $imageSize = $_FILES['image']['size'];
+    if(isset($_FILES['add-equipment-image']) && !empty($_FILES['add-equipment-image']['name'])){
+        $image = $_FILES['add-equipment-image']['name'];
+        $tempName = $_FILES['add-equipment-image']['tmp_name'];
+        $imageType = $_FILES['add-equipment-image']['type'];
+        $imageSize = $_FILES['add-equipment-image']['size'];
         
         // Check file type
         $validExtensions = array("image/jpeg", "image/jpg", "image/png");
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(mysqli_query($con, $sql)){
                 echo "Equipment added successfully!";
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($con);
+                echo "Error: " . $sql . ":-" . mysqli_error($con);
             }
         } else {
             echo "Invalid file format! Please upload an image file.";
@@ -38,5 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Please select an image file.";
     }
+
+    // Close the database connection
+    mysqli_close($con);
 }
 ?>

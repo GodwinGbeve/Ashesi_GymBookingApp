@@ -119,7 +119,7 @@ include ('../functions/username_fxn.php');
                 <button type="button" class="close-btn">&times;</button>
                 <div class="form-group">
                     <label for="add-equipment-image">Equipment Image</label>
-                    <input type="file" name="image" id="add-equipment-image" class="form-control" required>
+                    <input type="file" name="add-equipment-image" id="add-equipment-image" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="add-equipment-name">Equipment Name</label>
