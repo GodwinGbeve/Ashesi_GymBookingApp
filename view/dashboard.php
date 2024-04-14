@@ -1,5 +1,6 @@
 <?php
 include ('../settings/core.php');
+include('../settings/connection.php');
 include ('../functions/username_fxn.php');
 checkLogin();
 
@@ -16,7 +17,7 @@ $result = mysqli_query($con, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashesifit Booking</title>
+    <title>Ashesifit Dashboard</title>
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/dashboard-page.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">

@@ -1,5 +1,6 @@
 <?php
 include '../settings/core.php';
+include '../settings/connection.php';
 include ('../functions/username_fxn.php');
 if (isset($_SESSION['user_id'])) {
     $userID = $_SESSION['user_id'];
