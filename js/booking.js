@@ -7,6 +7,7 @@
 //     bookingFormWrapper.style.display = bookingFormWrapper.style.display === 'none' ? 'block' : 'none';
 // });
 
+
 // document.addEventListener('DOMContentLoaded', function() {
 //     const closeButton = document.querySelector('.close-button');
 //     const formWrapper = document.querySelector('.booking-form-wrapper');

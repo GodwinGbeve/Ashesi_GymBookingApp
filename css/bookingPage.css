@@ -143,7 +143,6 @@ body {
     position: relative; /* Added position relative */
 }
 
-
 .toggle-table-btn {
     position: absolute; /* Added absolute position */
     top: 20px; /* Adjust the top position as needed */
