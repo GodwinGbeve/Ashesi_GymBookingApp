@@ -13,7 +13,7 @@ if (isset($_GET['userID'])) {
     mysqli_query($con, $sql_feedback);
 
     // Delete from Bookings table
-    $sql_bookings = "DELETE FROM Bookings WHERE userID = '$userID'";
+    $sql_bookings = "DELETE FROM bookings WHERE userID = '$userID'";
     mysqli_query($con, $sql_bookings);
 
     // Now delete the user account from the Users table
