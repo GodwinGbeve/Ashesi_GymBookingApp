@@ -54,6 +54,7 @@ include ('../functions/username_fxn.php');
                 <div class="menu-item"><a href="feedback.php"><i class="fas fa-comment"></i>Feedback</a></div>
                 <div class="menu-item"><a href="instructors.php"><i class="fas fa-chalkboard-teacher"></i>Instructors</a></div>
                 <div class="menu-item"><a href="equipment.php"><i class="fas fa-dumbbell"></i>Equipment</a></div>
+                <div class="menu-item"><a href="notification.php"><i class="fas fa-bell"></i>Notification</a></div>
             </div>
             <a href="../login/login.php">
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i>Logout</button>

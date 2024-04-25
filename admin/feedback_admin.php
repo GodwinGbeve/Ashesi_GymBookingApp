@@ -55,6 +55,8 @@ include ('../functions/username_fxn.php');
                             class="fas fa-chalkboard-teacher"></i> Instructors</a></div>
                 <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i>
                         Equipment</a></div>
+                <div class="menu-item"><a href="../admin/notification_admin.php"><i class="fas fa-bell"></i>
+                        Notification</a></div>
 
                 <?php
                 if (isset($_SESSION['role_id'])) {

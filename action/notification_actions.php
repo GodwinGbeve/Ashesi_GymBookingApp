@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
 }
 
 // Fetch missed messages
-$sql = "SELECT * FROM Notification WHERE timestamp < DATE_SUB(NOW(), INTERVAL 10 DAY)";
+$sql = "SELECT * FROM chat_notifications WHERE timestamp < DATE_SUB(NOW(), INTERVAL 10 DAY)";
 $result = $con->query($sql);
 
 $missed_messages = array();
@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
 }
 
 // Step 4: Logic to move messages to "missed messages" if they are older than 10 days
-$sql = "DELETE FROM Notification WHERE timestamp < DATE_SUB(NOW(), INTERVAL 10 DAY)";
+$sql = "DELETE FROM chat_notifications WHERE timestamp < DATE_SUB(NOW(), INTERVAL 10 DAY)";
 $con->query($sql);
 
 // Close the database connection
