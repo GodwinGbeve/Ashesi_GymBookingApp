@@ -5,6 +5,19 @@ include_once ('../settings/core.php');
 include ('../functions/username_fxn.php');
 ?>
 
+<?php
+// Start session
+
+if (!isset($_SESSION['role_id'])) {
+    header('Location: ../login/logout_view.php?error=unauthorized_user');
+    exit();
+}
+else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
+    header('Location: ../view/404.php');
+    exit();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +63,7 @@ include ('../functions/username_fxn.php');
                 <a href="equipment.php" class="menu-item"><i class="fas fa-dumbbell"></i> Equipment</a>
                 <a href="notification.php" class="menu-item active"><i class="fas fa-bell"></i> Notification</a>
             </div>
-            <a href="../login/login.php">
+            <a href="../login/logout_view.php" class="logout-link">
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </a>
         </div>
