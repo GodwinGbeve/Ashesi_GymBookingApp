@@ -33,7 +33,7 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-    <div class="notification-page">
+<div class="admin-feedback-page">
         <div class="sidebar">
             <div class="sidebar-header">
             <span class="material-symbols-outlined">
@@ -50,8 +50,7 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
                     echo "Error: User ID not set in session";
                 }
                 ?>
-
-                <div class="notification-icon"><i ></i></div>
+                <div class="feedback-icon"><i></i></div>
                 <div class="logo">Ashesifit</div>
             </div>
             <div class="sidebar-menu">
@@ -67,40 +66,46 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </a>
         </div>
-        <div class="notification-content">
-            <div class="new-messages message-box">
-                <h2>New Messages</h2>
+       
+    <!-- Button to send notification -->
+    <button id="send-notification-btn"><i class="fas fa-bell"></i> Send Notification</button>
 
-                <!-- it's wrong  -->
-                <div class="message-list" id="new-messages-list"></div>
-               <!-- <?php foreach ($feedback_messages as $message): ?>
-     <div class="message-item">
-         <div class="message-content">
-             <p><strong>Name: <?php echo $message['senderID']; ?></strong></p>
-             <p>Message: <?php echo $message['message']; ?></p>
-             <p>Time: <?php echo date('H:i', strtotime($message['date'])); ?></p>
-         </div>
-         <button class="reply-button">Reply</button>
-     </div>
- <?php endforeach; ?> -->
+    <!-- Notification content -->
+    <div class="notification-content">
+        <h1>Notification</h1>
+        <!-- Message box -->
+        <div class="message-box">
+            <!-- Sample message item -->
+            <div class="message-item">
+                <div class="message-content">
+                    <h3>Sample Message</h3>
+                    <p>This is a sample message content.</p>
+                </div>
+                <button class="reply-button">Reply</button>
             </div>
-            <div class="missed-messages message-box">
-                <h2>Missed Messages</h2>
-                <div class="message-list" id="missed-messages-list"></div>
-                <!-- It's wrong -->
-                <!-- <?php foreach ($missed_messages as $message): ?>
-                    <div class="message-item">
-                        <div class="message-content">
-                            <p><strong>Name: <?php echo $message['senderID']; ?></strong></p>
-                            <p>Message: <?php echo $message['messageReceived']; ?></p>
-                            <p>Time: <?php echo date('H:i', strtotime($message['timestamp'])); ?></p>
-                        </div>
-                        <button class="reply-button">Reply</button>
-                    </div>
-                <?php endforeach; ?> -->
+        </div>
+
+        <!-- Send Notification Form -->
+        <div class="send-notification-form-container">
+
+            <div class="send-notification-popup" id="send-notification-popup">
+                <div class="send-notification-form">
+                    <h2>Send Notification</h2>
+                    <form id="send-notification-form" action="../action/sendMessage.php">
+                        <label for="recipient">Recipient:</label>
+                        <input type="text" id="reply-name" placeholder="Name" required>
+                        <label for="message">Message:</label>
+                        <textarea name="message" id="message" cols="30" rows="5"></textarea>
+                        <button type="submit">Send</button>
+                        <button type="button" id="close-send-notification-popup">Close</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- Reply form container -->
     <div class="reply-form-container" id="reply-popup">
         <div class="reply-form">
             <h2>Reply</h2>
@@ -112,6 +117,22 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
             </form>
         </div>
     </div>
-    <script src="../js/notification.js"></script>
-</body>
+    <!-- Reply form container -->
+    <div class="reply-form-container">
+        <h2>Reply</h2>
+        <form id="reply-form">
+            <input type="text" id="reply-name" placeholder="Name" required>
+            <textarea id="reply-message" placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+            <button type="button" id="close-popup">Close</button>
+        </form>
+    </div>
+    </div>
+
+
+
+    <script src="../js/admin_js/notification_admin.js"></script>
+
+    <script src="../js/admin_js/notification_admin.js"></script>
+
 </html>

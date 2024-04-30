@@ -2,7 +2,7 @@
 // Include database connection
 include_once ('../settings/connection.php');
 include_once ('../settings/core.php');
-
+include ('../functions/username_fxn.php');
 ?>
 
 <?php
@@ -25,18 +25,34 @@ else if($_SESSION['role_id'] != 4 && $_SESSION['role_id'] != 3){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Feedback</title>
+    <title>Admin Notification</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/admin_css/notification_admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
     <div class="admin-feedback-page">
         <div class="sidebar">
             <div class="sidebar-header">
-                <div class="feedback-icon"><i class="fas fa-calendar-alt"></i></div>
+            <span class="material-symbols-outlined">
+                    exercise</span>
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                    $userId = $_SESSION['user_id'];
+                    $userName = getUserName($userId, $con);
+                    echo '<div class="user-info">';
+
+                    echo '  <strong>' . $userName . '</strong>'; // Enclose user name in <strong> tag
+                    echo '</div>';
+                } else {
+                    echo "Error: User ID not set in session";
+                }
+                ?>
+                <div class="feedback-icon"><i></i></div>
                 <div class="logo">Ashesifit</div>
             </div>
             <div class="sidebar-menu">

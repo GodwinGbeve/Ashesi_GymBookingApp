@@ -76,52 +76,81 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Notification Content Styles */
-.notification-content {
-  display: flex;
+
+.content {
   margin-left: 250px; /* Adjust for sidebar width */
   padding: 20px;
 }
 
+.feedback-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+/* Button to send notification */
+#send-notification-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #9F4446;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Notification content */
+.notification-content {
+  margin-top: 50px; /* Adjust for button height and sidebar */
+  padding: 20px;
+  margin-left: 250px; /* Adjust for sidebar width */
+}
+
+/* Message box */
 .message-box {
-  flex: 1;
-  margin-right: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
-.message-list {
-  background-color: #d9ebf1;
-  padding: 5px;
-  margin-bottom: 10px;
-}
-
+/* Message item */
 .message-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ced4da;
+  padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
-.message-item img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.message-item .message-content {
+.message-content {
   flex: 1;
 }
 
-.message-item .reply-button {
+.message-content h3 {
+  margin-bottom: 5px;
+}
+
+.reply-button {
   background-color: #9F4446;
-  color: #fff;
+  color: white;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.reply-button:hover {
+  background-color: #7b2a2d;
+}
+
+/* Reply form container */
 .reply-form-container {
   display: none;
   position: fixed;
@@ -137,7 +166,6 @@ body {
 
 .reply-form-container h2 {
   margin-bottom: 10px;
-  font-size: 20px;
 }
 
 .reply-form-container input,
@@ -152,27 +180,73 @@ body {
 .reply-form-container button {
   padding: 10px 20px;
   background-color: #9F4446;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.reply-form-container button[type="submit"] {
-  background-color: #9F4446;
-}
-
 .reply-form-container button[type="submit"]:hover,
 .reply-form-container button#close-popup:hover {
-  background-color: #7b2a2d;
+  background-color: #7b2a2d; /* Darker red on hover */
 }
 
 #close-popup {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: none;
+  background:  #9F4446;
   border: none;
   font-size: 18px;
   cursor: pointer;
+}
+
+
+/* Send Notification Popup */
+.send-notification-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.send-notification-form {
+  text-align: center;
+}
+
+.send-notification-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+
+.send-notification-form input,
+.send-notification-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.send-notification-form button {
+  background-color: #9F4446;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-notification-form button[type="submit"]:hover,
+.send-notification-form button#close-send-notification-popup:hover {
+  background-color: #7b2a2d; /* Darker red on hover */
 }
