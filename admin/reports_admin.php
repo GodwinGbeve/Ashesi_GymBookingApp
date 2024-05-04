@@ -12,7 +12,7 @@ if (!isset($_SESSION['role_id'])) {
     header('Location: ../login/logout_view.php?error=unauthorized_user');
     exit();
 }
-else if($_SESSION['role_id'] != 4 ){
+else if($_SESSION['role_id'] != 3 ){
     header('Location: ../view/404.php');
     exit();
 }
