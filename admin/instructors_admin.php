@@ -91,7 +91,7 @@ else if($_SESSION['role_id'] != 4 && $_SESSION['role_id'] != 3){
                         Schedule</a></div>
 
             </div>
-            <a href="../login/logout_view.phpp" class="logout-link">
+            <a href="../login/logout_view.php" class="logout-link">
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </a>
         </div>
