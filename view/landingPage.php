@@ -24,6 +24,7 @@
                 <img class="logo" src="../img/Ashesilogo.png" alt="Ashesifit Logo">
                 <h1>REACH YOUR LIMITS AND GET TO THE NEXT LEVEL</h1>
                 <a href="../login/signup.php" class="signup-btn">SIGN UP</a>
+                <a href="../login/login.php" class="signup-btn">LOGIN</a>
                 <p class="copyright">&copy; 2024 Ashesifit. All Rights Reserved.</p>
             </div>
         </div>
