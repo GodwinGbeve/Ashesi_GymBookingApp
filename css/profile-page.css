@@ -55,13 +55,38 @@ body {
     text-decoration: none;
     color: #fff; /* White color */
 }
+.menu-item.active {
+    border-bottom: none;
+    background-color: white; /* White background color */
+    color: #9F4446; /* Theme color */
+    border-left: 4px solid #9F4446; /* Theme color */
+
+}
+
+
+.link_tab{
+    text-decoration: none;
+    color: #fff; /* White color */
+}
+
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+
+.menu-item:hover a {
+    color: #fff; /* White color */
+}
 
 .menu-item.active a {
-    border-bottom: none;
+    color: #9F4446; /* Wine color */
 }
 
 .menu-item.active {
-    border-bottom: none;
+    background-color: white; /* White background color */
+    color: #9F4446; /* Wine color */
+    border-left: 4px solid #9F4446; /* Wine color */
 }
 
 .logout-link {

@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $equipmentName = mysqli_real_escape_string($con, $_POST['equipment_name']);
     $description = mysqli_real_escape_string($con, $_POST['description']);
     $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
+    $youtubeLink = mysqli_real_escape_string($con, $_POST['youtube_link']); // Add youtube_link variable
     
     // Check if image file is selected
     if(isset($_FILES['add-equipment-image']) && !empty($_FILES['add-equipment-image']['name'])){
@@ -24,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($tempName, $uploadPath);
             
             // Insert equipment data into database
-            $sql = "INSERT INTO Equipment (equipment_name, description, quantity, image) 
-                    VALUES ('$equipmentName', '$description', '$quantity', '$image')";
+            $sql = "INSERT INTO Equipment (equipment_name, description, quantity, image, youtube_link) 
+                    VALUES ('$equipmentName', '$description', '$quantity', '$image', '$youtubeLink')"; // Add youtube_link to SQL query
             
             if(mysqli_query($con, $sql)){
                 echo "Equipment added successfully!";

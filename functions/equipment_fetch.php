@@ -17,6 +17,10 @@ if ($result) {
             echo "<h3>" . $row['equipment_name'] . "</h3>";
             echo "<h3>" . $row['description'] . "</h3>";
             echo "<h3>" . $row['quantity'] . "</h3>";
+            // Check if youtube_link exists and display it
+            if (!empty($row['youtube_link'])) {
+                echo "<a href='" . $row['youtube_link'] . "' target='_blank'>YouTube Link</a>";
+            }
             // You can display additional information such as description and quantity here
             echo "</div>";
         }

@@ -9,8 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $equipmentName = mysqli_real_escape_string($con, $_POST['equipment-name']);
     $description = mysqli_real_escape_string($con, $_POST['description']);
     $quantity = mysqli_real_escape_string($con, $_POST['quantity-available']);
- 
-    echo $equipmentID , $equipmentName, $description,$quantity;
+    $youtubeLink = mysqli_real_escape_string($con, $_POST['youtube-link']); // Add YouTube link
     
     // Check if image file is selected
     if(isset($_FILES['edit-equipment-image']) && !empty($_FILES['edit-equipment-image']['name'])){
@@ -26,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uploadPath = "../img/" . $image;
             move_uploaded_file($tempName, $uploadPath);
             
-            // Update equipment data in database
+            // Update equipment data in database including YouTube link
             $sql = "UPDATE Equipment 
-                    SET equipment_name = '$equipmentName', description = '$description', quantity = '$quantity', image = '$image'
+                    SET equipment_name = '$equipmentName', description = '$description', quantity = '$quantity', image = '$image', youtube_link = '$youtubeLink'
                     WHERE equipmentID = '$equipmentID'";
             
             if(mysqli_query($con, $sql)){
@@ -44,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // If no new image is selected, update equipment data without changing the image
         $sql = "UPDATE Equipment 
-                SET equipment_name = '$equipmentName', description = '$description', quantity = '$quantity'
+                SET equipment_name = '$equipmentName', description = '$description', quantity = '$quantity', youtube_link = '$youtubeLink'
                 WHERE equipmentID = '$equipmentID'";
         
         if(mysqli_query($con, $sql)){
             echo "Equipment updated successfully!";
-          header('Location: ../admin/equipment_admin.php');
+            header('Location: ../admin/equipment_admin.php');
             exit();
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($con);

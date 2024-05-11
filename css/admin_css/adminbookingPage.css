@@ -17,6 +17,7 @@ body {
     color: white;
     height: 100%;
     padding-top: 20px;
+    transition: background-color 0.3s ease; /* Transition for background color change */
 }
 
 .sidebar-header {
@@ -60,6 +61,13 @@ body {
 .menu-item.active {
     border-bottom: none;
 }
+
+/* CSS for Clicked Menu Items */
+.menu-item.clicked {
+    background-color: white; /* White background color */
+    color: #9F4446; /* Wine text color */
+}
+
 
 .logout-link {
     text-decoration: none;

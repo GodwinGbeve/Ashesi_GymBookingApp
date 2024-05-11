@@ -133,6 +133,6 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
 
     <script src="../js/admin_js/notification_admin.js"></script>
 
-    <script src="../js/admin_js/notification_admin.js"></script>
+     <script src="../js/click_effect.js"></script>
 
 </html>

@@ -61,6 +61,11 @@ body {
     border-bottom: none;
 }
 
+.menu-item.clicked {
+    background-color: white; /* White background color */
+    color: #9F4446; /* Wine text color */
+}
+
 .logout-link {
     text-decoration: none;
 }

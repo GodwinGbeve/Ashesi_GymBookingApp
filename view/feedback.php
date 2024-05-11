@@ -57,18 +57,18 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
                 ?>
                 <div class="feedback-icon"><i></i></div>
                 <div class="logo">Ashesifit</div>
-            </div>
-            <div class="sidebar-menu">
-            <div class="menu-item"><a href="profile.php"><i class="fas fa-user"> </i> Profile</a></div>
-                <div class="menu-item"><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i>Dashboard</a></div>
-                <div class="menu-item"><a href="booking.php"><i class="fas fa-calendar-alt"></i>Bookings</a></div>
-                <div class="menu-item"><a href="feedback.php"><i class="fas fa-comment"></i>Feedback</a></div>
-                <div class="menu-item"><a href="instructors.php"><i class="fas fa-chalkboard-teacher"></i>Instructors</a></div>
-                <div class="menu-item"><a href="equipment.php"><i class="fas fa-dumbbell"></i>Equipment</a></div>
-                <div class="menu-item"><a href="notification.php"><i class="fas fa-bell"></i>Notification</a></div>
+                </div>
+                <div class="sidebar-menu">
+                <a class="link_tab" href="profile.php"><div class="menu-item"><i class="fas fa-user"></i> Profile</div></a>
+                <a class="link_tab" href="dashboard.php"><div class="menu-item"><i class="fas fa-tachometer-alt"></i> Dashboard</div></a>
+                <a class="link_tab" href="booking.php" ><div class="menu-item"><i class="fas fa-calendar-alt"></i> Bookings</div></a>
+                <a class="link_tab" href="feedback.php " ><div class="menu-item active"><i class="fas fa-comment"></i> Feedback</div></a>
+                <a class="link_tab" href="instructors.php"><div class="menu-item"><i class="fas fa-chalkboard-teacher"></i> Instructors</div></a>
+                <a class="link_tab" href="equipment.php"><div class="menu-item"><i class="fas fa-dumbbell"></i> Equipment</div></a>
+                <a class="link_tab" href="notification.php"><div class="menu-item"><i class="fas fa-bell"></i> Notification</div></a>
             </div>
             <a href="../login/logout_view.php" class="logout-link">
-                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i>Logout</button>
+                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </a>
         </div>
         <div class="content">
@@ -101,6 +101,7 @@ else if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2){
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Your existing JavaScript code -->
     <script src="../js/feedback.js"></script>
+    <script src="../js/click_effect.js"></script>
     <script>
         $(document).ready(function () {
             $('#feedbackForm').submit(function (event) {

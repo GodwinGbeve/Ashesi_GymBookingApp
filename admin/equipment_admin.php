@@ -154,6 +154,12 @@ else if($_SESSION['role_id'] != 4 && $_SESSION['role_id'] != 3){
                     <!-- Example: pattern="[0-9]+" ensures only numbers are allowed -->
                 </div>
                 <div class="form-group">
+            <label for="youtube-link">YouTube Link</label>
+            <input type="text" name="youtube_link" id="youtube-link" class="form-control" required pattern="^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$" title="Please enter a valid YouTube video link">
+            <!-- Example regex to validate YouTube links -->
+            <!-- pattern="^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$" -->
+        </div>
+                <div class="form-group">
                     <button type="submit" class="add-btn">Add Equipment</button>
                 </div>
             </form>
@@ -189,6 +195,11 @@ else if($_SESSION['role_id'] != 4 && $_SESSION['role_id'] != 3){
                         pattern="[0-9]+" title="Please enter a valid quantity">
                     <!-- Example: pattern="[0-9]+" ensures only numbers are allowed -->
                 </div>
+                <div class="form-group">
+            <label for="youtube-link">YouTube Link</label>
+            <input type="text" id="youtube-link" name="youtube-link" class="form-control" required pattern="^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+" title="Please enter a valid YouTube link">
+            <!-- Example: pattern checks for a valid YouTube link -->
+        </div>
                 <div class="form-group">
                     <button type="submit" class="save-btn">Save</button>
                 </div>

@@ -2,7 +2,7 @@
 // Function to retrieve equipment availability from the database
 function getEquipmentAvailability($conn) {
     // Query to select equipment availability
-    $sql = "SELECT equipmentID, equipment_name, status FROM equipment";
+    $sql = "SELECT equipmentID, equipment_name, status, youtube_link FROM equipment";
 
     // Execute the query
     $result = mysqli_query($conn, $sql);
@@ -42,12 +42,13 @@ $equipmentAvailability = getEquipmentAvailability($conn);
 if ($equipmentAvailability) {
     echo "<h2>Equipment Availability</h2>";
     echo "<table border='1'>";
-    echo "<tr><th>Equipment ID</th><th>Equipment Name</th><th>Status</th></tr>";
+    echo "<tr><th>Equipment ID</th><th>Equipment Name</th><th>Status</th><th>YouTube Link</th></tr>";
     foreach ($equipmentAvailability as $equipment) {
         echo "<tr>";
         echo "<td>" . $equipment['equipmentID'] . "</td>";
         echo "<td>" . $equipment['equipment_name'] . "</td>";
         echo "<td>" . $equipment['status'] . "</td>";
+        echo "<td>" . $equipment['youtube_link'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";
