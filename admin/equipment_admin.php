@@ -60,38 +60,37 @@ else if($_SESSION['role_id'] != 4 && $_SESSION['role_id'] != 3){
                 <div class="logo">Ashesifit</div>
             </div>
             <div class="sidebar-menu">
-                <!-- Sidebar menu items -->
-                <div class="menu-item"><a href="../admin/profile_admin.php"><i class="fas fa-user"></i> Profile</a>
-                </div>
-                <div class="menu-item"><a href="../admin/dashboard_admin.php"><i class="fas fa-tachometer-alt"></i>
-                        Dashboard</a></div>
-                <div class="menu-item"><a href="../admin/booking_admin.php"><i class="fas fa-calendar-alt"></i>
-                        Bookings</a></div>
-                <div class="menu-item active"><a href="../admin/feedback_admin.php"><i class="fas fa-comment"></i>
-                        Feedback</a></div>
-                <div class="menu-item"><a href="../admin/instructors_admin.php"><i
-                            class="fas fa-chalkboard-teacher"></i> Instructors</a></div>
-                <div class="menu-item"><a href="../admin/equipment_admin.php"><i class="fas fa-dumbbell"></i>
-                        Equipment</a></div>
-                <div class="menu-item"><a href="../admin/notification_admin.php"><i class="fas fa-bell"></i>
-                        Notification</a></div>
+            <a class="link_tab" href="../admin/profile_admin.php"><div class="menu-item "><i class="fas fa-user"></i> Profile
+                </div></a>
+                <a class="link_tab" href="../admin/dashboard_admin.php"><div class="menu-item"><i class="fas fa-tachometer-alt"></i>
+                        Dashboard</div></a>
+                <a class="link_tab" href="../admin/booking_admin.php"><div class="menu-item"><i class="fas fa-calendar-alt"></i>
+                        Bookings</div></a>
+                <a class="link_tab" href="../admin/feedback_admin.php"><div class="menu-item"><i class="fas fa-comment"></i>
+                        Feedback</div></a>
+                <a class="link_tab" href="../admin/instructors_admin.php"><div class="menu-item"><i class="fas fa-chalkboard-teacher"></i>
+                 Instructors</div></a>
+                <a class="link_tab" href="../admin/equipment_admin.php"><div class="menu-item active"><i class="fas fa-dumbbell"></i>
+                        Equipment</div></a>
+                <a class="link_tab" href="../admin/notification_admin.php"><div class="menu-item"><i class="fas fa-bell"></i>
+                        Notification</div></a>
 
                 <?php
                 if (isset($_SESSION['role_id'])) {
                     $rid = $_SESSION['role_id'];
                     if ($rid == 3) { // If the user is an admin
                         ?>
-                        <div class="menu-item"><a href="../admin/reports_admin.php"><i class="fas fa-chart-bar"></i> Generate
-                                Reports</a></div>
-                        <div class="menu-item"><a href="../admin/manageUsers_admin.php"><i class="fas fa-users"></i> Manage
-                                Users</a></div>
+                        <a class="link_tab" href="../admin/reports_admin.php"><div class="menu-item"><i class="fas fa-chart-bar"></i> Generate
+                                Reports</div></a>
+                        <a class="link_tab" href="../admin/manageUsers_admin.php"><div class="menu-item"><i class="fas fa-users"></i> Manage
+                                Users</div></a>
                         <?php
                     }
                 }
                 ?>
-                <div class="menu-item"><a href="../admin/schedule_instructor.php"> <i class="far fa-clock"></i> View
-                        Schedule</a></div>
-                <!-- Add links to other admin pages here -->
+                <a class="link_tab" href="../admin/schedule_instructor.php"> <div class="menu-item"><i class="far fa-clock"></i> View
+                        Schedule</div></a>
+
             </div>
             <a href="../login/logout_view.php" class="logout-link">
                 <button class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -319,6 +318,7 @@ else if($_SESSION['role_id'] != 4 && $_SESSION['role_id'] != 3){
 
     <!-- JavaScript file for handling AJAX requests -->
     <script src="../js/admin_js/equipment_admin.js"></script>
+    <script src="../js/click_effect.js"></script>
     <script>
         // Add event listener to the delete button
         document.getElementById('popup-delete-btn').addEventListener('click', function () {

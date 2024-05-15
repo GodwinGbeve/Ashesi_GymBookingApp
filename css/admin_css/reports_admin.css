@@ -37,10 +37,18 @@ body {
     margin: 20px 0;
 }
 
+.link_tab{
+    text-decoration: none;
+    color: #fff; /* White color */
+  }
+
 .menu-item {
     padding: 10px 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+  color: white;
+  display: block;
 }
 
 .menu-item a {
@@ -48,23 +56,35 @@ body {
     color: #fff; /* White color */
 }
 
-.menu-item a:hover {
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+.menu-item:hover a {
     text-decoration: none;
     color: #fff; /* White color */
 }
 
 .menu-item.active a {
     border-bottom: none;
+    color: #9F4446; /* Wine color */
 }
 
 .menu-item.active {
     border-bottom: none;
+    background-color: white; /* White background color */
+    color: #9F4446; /* Theme color */
+    border-left: 4px solid #9F4446; /* Theme color */
+  
 }
 
+/* CSS for Clicked Menu Items */
 .menu-item.clicked {
     background-color: white; /* White background color */
     color: #9F4446; /* Wine text color */
 }
+
+
 
 .logout-link {
     text-decoration: none;
